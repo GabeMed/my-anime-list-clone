@@ -1,11 +1,7 @@
-import ListGroup from "./components/ListGroup";
+import { HStack } from "@chakra-ui/react";
 
 function App() {
-  return (
-    <div>
-      <ListGroup />
-    </div>
-  );
+  return <div>hello </div>;
 }
 
 export default App;
