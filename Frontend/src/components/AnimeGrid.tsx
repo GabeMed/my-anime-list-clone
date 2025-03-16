@@ -1,27 +1,8 @@
-import React, { useEffect, useState } from "react";
-import apiClient from "@/services/api-client";
+import useAnimes from "@/hooks/useAnimes";
 import { Text } from "@chakra-ui/react";
 
-interface Anime {
-  mal_id: number;
-  title: string;
-}
-
-interface FetchAnimeResponse {
-  pagination: object;
-  data: Anime[];
-}
-
 const AnimeGrid = () => {
-  const [animes, setAnimes] = useState<Anime[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    apiClient
-      .get<FetchAnimeResponse>("/xanime")
-      .then((res) => setAnimes(res.data.data))
-      .catch((err) => setError(err.message));
-  });
+  const { error, animes } = useAnimes();
 
   return (
     <>
