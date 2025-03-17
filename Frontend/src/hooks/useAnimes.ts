@@ -2,9 +2,16 @@ import { useEffect, useState } from "react";
 import apiClient from "@/services/api-client";
 import { CanceledError } from "axios";
 
+interface Genre {
+  mal_id: number;
+  type: string;
+  name: string;
+}
+
 export interface Anime {
   mal_id: number;
   title: string;
+  genres: Genre[];
   images: {
     webp: {
       large_image_url: string;
