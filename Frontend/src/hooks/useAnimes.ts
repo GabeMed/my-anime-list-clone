@@ -12,6 +12,7 @@ export interface Anime {
   mal_id: number;
   title: string;
   genres: Genre[];
+  score: number;
   images: {
     webp: {
       large_image_url: string;
