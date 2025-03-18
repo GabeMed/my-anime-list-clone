@@ -5,7 +5,7 @@ import AnimeCardSkeleton from "./AnimeCardSkeleton";
 import AnimeCardContainer from "./AnimeCardContainer";
 
 const AnimeGrid = () => {
-  const { error, animes, isLoading } = useAnimes();
+  const { data, error, isLoading } = useAnimes();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
@@ -25,7 +25,7 @@ const AnimeGrid = () => {
               </AnimeCardContainer>
             )
         )}
-        {animes.map((anime) => (
+        {data.map((anime) => (
           <AnimeCardContainer>
             <AnimeCard key={anime.mal_id} anime={anime} />
           </AnimeCardContainer>
