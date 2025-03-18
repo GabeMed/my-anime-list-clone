@@ -28,22 +28,28 @@ interface FetchAnimeResponse {
 const useAnimes = () => {
   const [animes, setAnimes] = useState<Anime[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
 
+    setLoading(true);
     apiClient
       .get<FetchAnimeResponse>("/anime", { signal: controller.signal })
-      .then((res) => setAnimes(res.data.data))
+      .then((res) => {
+        setAnimes(res.data.data);
+        setLoading(false);
+      })
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err.message);
+        setLoading(false);
       });
 
     return () => controller.abort();
   }, []);
 
-  return { animes, error };
+  return { animes, error, isLoading };
 };
 
 export default useAnimes;
