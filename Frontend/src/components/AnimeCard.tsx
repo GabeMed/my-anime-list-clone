@@ -12,7 +12,7 @@ const AnimeCard = ({ anime }: Props) => {
         src={anime.images.webp.large_image_url}
         aspectRatio={6 / 9}
         maxH="md"
-        objectFit="cover"
+        boxSize="65"
       />
       <Card.Body p="4">
         <HStack justify="space-between">
