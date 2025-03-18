@@ -1,27 +1,19 @@
-import { useEffect, useState } from "react";
 import apiClient from "@/services/api-client";
 import { CanceledError } from "axios";
-import { Genre } from "./useGenres";
+import { useEffect, useState } from "react";
 
-export interface Anime {
+export interface Genre {
   mal_id: number;
-  title: string;
-  genres: Genre[];
-  score: number;
-  images: {
-    webp: {
-      large_image_url: string;
-    };
-  };
+  type: string;
+  name: string;
 }
 
-interface FetchAnimeResponse {
-  pagination: object;
-  data: Anime[];
+interface FetchGenreResponse {
+  data: Genre[];
 }
 
-const useAnimes = () => {
-  const [animes, setAnimes] = useState<Anime[]>([]);
+const useGenres = () => {
+  const [genres, setGenres] = useState<Genre[]>([]);
   const [error, setError] = useState("");
   const [isLoading, setLoading] = useState(false);
 
@@ -30,9 +22,9 @@ const useAnimes = () => {
 
     setLoading(true);
     apiClient
-      .get<FetchAnimeResponse>("/anime", { signal: controller.signal })
+      .get<FetchGenreResponse>("/genres/anime", { signal: controller.signal })
       .then((res) => {
-        setAnimes(res.data.data);
+        setGenres(res.data.data);
         setLoading(false);
       })
       .catch((err) => {
@@ -44,7 +36,7 @@ const useAnimes = () => {
     return () => controller.abort();
   }, []);
 
-  return { animes, error, isLoading };
+  return { genres, error, isLoading };
 };
 
-export default useAnimes;
+export default useGenres;
