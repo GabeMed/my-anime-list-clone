@@ -7,7 +7,7 @@ interface Props {
 }
 const AnimeCard = ({ anime }: Props) => {
   return (
-    <Card.Root flexDirection="row" borderRadius={10} overflow={"hidden"}>
+    <Card.Root flexDirection="row">
       <Image
         src={anime.images.webp.large_image_url}
         aspectRatio={6 / 9}
