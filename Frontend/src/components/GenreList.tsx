@@ -1,7 +1,11 @@
-import useGenres from "@/hooks/useGenres";
-import { List, Spinner, Text } from "@chakra-ui/react";
+import useGenres, { Genre } from "@/hooks/useGenres";
+import { Button, List, Spinner, Text } from "@chakra-ui/react";
 
-const GenreList = () => {
+interface Props {
+  onSelectGenre: (genre: Genre) => void;
+}
+
+const GenreList = ({ onSelectGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
 
   if (error) return null;
@@ -12,7 +16,13 @@ const GenreList = () => {
     <List.Root>
       {data.map((genre) => (
         <List.Item key={genre.mal_id} padding="5px">
-          <Text fontSize="large"> {genre.name}</Text>
+          <Button
+            onClick={() => onSelectGenre(genre)}
+            fontSize="large"
+            variant="plain"
+          >
+            {genre.name}
+          </Button>
         </List.Item>
       ))}
     </List.Root>

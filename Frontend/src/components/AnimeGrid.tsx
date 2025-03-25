@@ -3,9 +3,14 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import AnimeCard from "./AnimeCard";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
 import AnimeCardContainer from "./AnimeCardContainer";
+import { Genre } from "@/hooks/useGenres";
 
-const AnimeGrid = () => {
-  const { data, error, isLoading } = useAnimes();
+interface Props {
+  selectedGenre: Genre | null;
+}
+
+const AnimeGrid = ({ selectedGenre }: Props) => {
+  const { data, error, isLoading } = useAnimes(selectedGenre);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (
@@ -20,14 +25,14 @@ const AnimeGrid = () => {
         {skeletons.map(
           (skeleton) =>
             isLoading && (
-              <AnimeCardContainer>
-                <AnimeCardSkeleton key={skeleton} />
+              <AnimeCardContainer key={skeleton}>
+                <AnimeCardSkeleton />
               </AnimeCardContainer>
             )
         )}
         {data.map((anime) => (
-          <AnimeCardContainer>
-            <AnimeCard key={anime.mal_id} anime={anime} />
+          <AnimeCardContainer key={anime.mal_id}>
+            <AnimeCard anime={anime} />
           </AnimeCardContainer>
         ))}
       </SimpleGrid>

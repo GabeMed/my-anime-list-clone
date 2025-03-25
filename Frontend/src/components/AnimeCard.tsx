@@ -7,8 +7,13 @@ interface Props {
 }
 const AnimeCard = ({ anime }: Props) => {
   return (
-    <Card.Root flexDirection="row">
-      <Image src={anime.images.webp.large_image_url} maxH="md" />
+    <Card.Root flexDirection="row" boxSize="65">
+      <Image
+        src={anime.images.webp.large_image_url}
+        maxH="md"
+        maxW="sm"
+        aspectRatio={6 / 9}
+      />
       <Card.Body p="4">
         <HStack justify="space-between">
           <Heading size="xl">{anime.title}</Heading>

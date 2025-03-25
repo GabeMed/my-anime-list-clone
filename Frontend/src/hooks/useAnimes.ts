@@ -13,6 +13,9 @@ export interface Anime {
   };
 }
 
-const useAnimes = () => useData<Anime>("/anime");
+const useAnimes = (selectedGenre: Genre | null) =>
+  useData<Anime>("/anime", { params: { genres: selectedGenre?.mal_id } }, [
+    selectedGenre?.mal_id,
+  ]);
 
 export default useAnimes;
