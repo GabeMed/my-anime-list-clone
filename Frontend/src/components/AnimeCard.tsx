@@ -21,7 +21,9 @@ const AnimeCard = ({ anime }: Props) => {
         </HStack>
         <HStack mt="4" wrap="wrap">
           {anime.genres.map((genre) => (
-            <Badge size="lg">{genre.name}</Badge>
+            <Badge size="sm" variant="surface">
+              {genre.name}
+            </Badge>
           ))}
         </HStack>
       </Card.Body>
