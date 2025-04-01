@@ -3,9 +3,10 @@ import { Button, List, Spinner, Text } from "@chakra-ui/react";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
 
   if (error) return null;
@@ -17,9 +18,15 @@ const GenreList = ({ onSelectGenre }: Props) => {
       {data.map((genre) => (
         <List.Item key={genre.mal_id} padding="5px">
           <Button
+            fontWeight={
+              genre.mal_id === selectedGenre?.mal_id ? "bold" : "normal"
+            }
+            variant={
+              genre.mal_id === selectedGenre?.mal_id ? "subtle" : "ghost"
+            }
             onClick={() => onSelectGenre(genre)}
             fontSize="large"
-            variant="plain"
+            w="full"
           >
             {genre.name}
           </Button>
