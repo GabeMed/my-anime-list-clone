@@ -6,6 +6,7 @@ export interface Anime {
   title: string;
   genres: Genre[];
   score: number;
+  type: string;
   images: {
     webp: {
       large_image_url: string;
