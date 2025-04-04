@@ -1,8 +1,8 @@
-import useAnimes from "@/hooks/useAnimes";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import AnimeCard from "./AnimeCard";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
 import AnimeCardContainer from "./AnimeCardContainer";
+import useAnimes from "@/hooks/useAnimes";
 import { Genre } from "@/hooks/useGenres";
 
 interface Props {
