@@ -76,6 +76,6 @@ Este projeto está licenciado sob a [MIT License](LICENSE).
 
 ---
 
-Desenvolvido com ❤️ por [Gabriel Medeiros](https://github.com/GabeMed)
+Desenvolvido por [Gabriel Medeiros](https://github.com/GabeMed)
 
 
