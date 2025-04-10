@@ -1,23 +1,23 @@
-import { useState } from "react";
 import { Menu } from "@chakra-ui/react/menu";
 import { Button, Icon, Portal } from "@chakra-ui/react";
-import { animeTypeData } from "@/utils/animeType";
+import { AnimeType, animeTypeData } from "@/utils/animeType";
 
-const MediaTypeSelector = () => {
+interface Props {
+  selectedMediaType: AnimeType | "All";
+  onSelectMediaType: (mediaType: AnimeType | "All") => void;
+}
+
+const MediaTypeSelector = ({ selectedMediaType, onSelectMediaType }: Props) => {
   const types = [
     "All",
-    ...(Object.keys(animeTypeData) as Array<
-      keyof typeof animeTypeData | string
-    >),
-  ];
-
-  const [mediaType, setMediaType] = useState("All");
+    ...(Object.keys(animeTypeData) as AnimeType[]),
+  ] as const satisfies readonly (AnimeType | "All")[];
 
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
         <Button variant="subtle" size="md" fontSize="md">
-          {mediaType}
+          {selectedMediaType}
         </Button>
       </Menu.Trigger>
       <Portal>
@@ -25,7 +25,8 @@ const MediaTypeSelector = () => {
           <Menu.Content>
             {types.map((type) => (
               <Menu.Item
-                onClick={() => setMediaType(type)}
+                key={type}
+                onClick={() => onSelectMediaType(type)}
                 value={"item-" + type}
               >
                 {type}

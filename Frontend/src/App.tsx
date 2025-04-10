@@ -5,9 +5,13 @@ import GenreList from "./components/GenreList";
 import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import MediaTypeSelector from "./components/MediaTypeSelector";
+import { AnimeType } from "./utils/animeType";
 
 function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedMediaType, setSelectedMediaType] = useState<AnimeType | "All">(
+    "All"
+  );
 
   return (
     <Grid
@@ -26,8 +30,14 @@ function App() {
         />
       </GridItem>
       <GridItem area="main">
-        <MediaTypeSelector />
-        <AnimeGrid selectedGenre={selectedGenre} />
+        <MediaTypeSelector
+          selectedMediaType={selectedMediaType}
+          onSelectMediaType={(mediaType) => setSelectedMediaType(mediaType)}
+        />
+        <AnimeGrid
+          selectedMediaType={selectedMediaType}
+          selectedGenre={selectedGenre}
+        />
       </GridItem>
     </Grid>
   );

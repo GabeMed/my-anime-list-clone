@@ -1,5 +1,6 @@
 import { Genre } from "./useGenres";
 import useData from "./useData";
+import { AnimeType } from "@/utils/animeType";
 
 export interface Anime {
   mal_id: number;
@@ -14,9 +15,19 @@ export interface Anime {
   };
 }
 
-const useAnimes = (selectedGenre: Genre | null) =>
-  useData<Anime>("/anime", { params: { genres: selectedGenre?.mal_id } }, [
-    selectedGenre?.mal_id,
-  ]);
+const useAnimes = (
+  selectedGenre: Genre | null,
+  selectedMediaType: AnimeType | "All"
+) =>
+  useData<Anime>(
+    "/anime",
+    {
+      params: {
+        genres: selectedGenre?.mal_id,
+        ...(selectedMediaType !== "All" && { type: selectedMediaType }),
+      },
+    },
+    [selectedGenre?.mal_id, selectedMediaType]
+  );
 
 export default useAnimes;
