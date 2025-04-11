@@ -3,8 +3,6 @@ import AnimeCard from "./AnimeCard";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
 import AnimeCardContainer from "./AnimeCardContainer";
 import useAnimes from "@/hooks/useAnimes";
-import { Genre } from "@/hooks/useGenres";
-import { AnimeType } from "@/utils/animeType";
 import { AnimeQuery } from "@/App";
 
 interface Props {
@@ -19,7 +17,7 @@ const AnimeGrid = ({ animeQuery }: Props) => {
     <>
       {error && <Text>{error}</Text>}
       <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 2, xl: 3 }}
+        columns={{ sm: 1, md: 2, lg: 2, xl: 3 }} //todo adjust responsive logic
         padding="10px"
         columnGap={4}
         rowGap={10}

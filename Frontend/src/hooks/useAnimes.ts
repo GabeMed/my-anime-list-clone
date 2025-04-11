@@ -1,6 +1,5 @@
 import { Genre } from "./useGenres";
 import useData from "./useData";
-import { AnimeType } from "@/utils/animeType";
 import { AnimeQuery } from "@/App";
 
 export interface Anime {
