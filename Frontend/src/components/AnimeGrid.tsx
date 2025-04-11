@@ -5,17 +5,14 @@ import AnimeCardContainer from "./AnimeCardContainer";
 import useAnimes from "@/hooks/useAnimes";
 import { Genre } from "@/hooks/useGenres";
 import { AnimeType } from "@/utils/animeType";
+import { AnimeQuery } from "@/App";
 
 interface Props {
-  selectedMediaType: AnimeType | "All";
-  selectedGenre: Genre | null;
+  animeQuery: AnimeQuery;
 }
 
-const AnimeGrid = ({ selectedGenre, selectedMediaType }: Props) => {
-  const { data, error, isLoading } = useAnimes(
-    selectedGenre,
-    selectedMediaType
-  );
+const AnimeGrid = ({ animeQuery }: Props) => {
+  const { data, error, isLoading } = useAnimes(animeQuery);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   return (

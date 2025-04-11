@@ -7,11 +7,15 @@ import { Genre } from "./hooks/useGenres";
 import MediaTypeSelector from "./components/MediaTypeSelector";
 import { AnimeType } from "./utils/animeType";
 
+export interface AnimeQuery {
+  genre: Genre | null;
+  type: AnimeType | "All";
+}
+
 function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedMediaType, setSelectedMediaType] = useState<AnimeType | "All">(
-    "All"
-  );
+  const [animeQuery, setAnimeQuery] = useState<AnimeQuery>({
+    type: "All",
+  } as AnimeQuery);
 
   return (
     <Grid
@@ -25,19 +29,16 @@ function App() {
       </GridItem>
       <GridItem area="aside" hideBelow="lg">
         <GenreList
-          selectedGenre={selectedGenre}
-          onSelectGenre={(genre) => setSelectedGenre(genre)}
+          selectedGenre={animeQuery.genre}
+          onSelectGenre={(genre) => setAnimeQuery({ ...animeQuery, genre })}
         />
       </GridItem>
       <GridItem area="main">
         <MediaTypeSelector
-          selectedMediaType={selectedMediaType}
-          onSelectMediaType={(mediaType) => setSelectedMediaType(mediaType)}
+          selectedMediaType={animeQuery.type}
+          onSelectMediaType={(type) => setAnimeQuery({ ...animeQuery, type })}
         />
-        <AnimeGrid
-          selectedMediaType={selectedMediaType}
-          selectedGenre={selectedGenre}
-        />
+        <AnimeGrid animeQuery={animeQuery} />
       </GridItem>
     </Grid>
   );

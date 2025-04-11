@@ -1,6 +1,7 @@
 import { Genre } from "./useGenres";
 import useData from "./useData";
 import { AnimeType } from "@/utils/animeType";
+import { AnimeQuery } from "@/App";
 
 export interface Anime {
   mal_id: number;
@@ -15,19 +16,16 @@ export interface Anime {
   };
 }
 
-const useAnimes = (
-  selectedGenre: Genre | null,
-  selectedMediaType: AnimeType | "All"
-) =>
+const useAnimes = (animeQuery: AnimeQuery) =>
   useData<Anime>(
     "/anime",
     {
       params: {
-        genres: selectedGenre?.mal_id,
-        ...(selectedMediaType !== "All" && { type: selectedMediaType }),
+        genres: animeQuery.genre?.mal_id,
+        ...(animeQuery.type !== "All" && { type: animeQuery.type }),
       },
     },
-    [selectedGenre?.mal_id, selectedMediaType]
+    [animeQuery]
   );
 
 export default useAnimes;
