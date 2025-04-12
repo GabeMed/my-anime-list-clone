@@ -21,6 +21,9 @@ const useData = <T>(
       const controller = new AbortController();
 
       setLoading(true);
+      setError(""); //! Very important to clean the unsolved requests before launching a new one
+      setData([]);
+
       apiClient
         .get<FetchResponse<T>>(endpoint, {
           signal: controller.signal,
