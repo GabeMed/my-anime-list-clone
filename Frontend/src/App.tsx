@@ -1,10 +1,11 @@
-import { Grid, GridItem } from "@chakra-ui/react";
+import { useState } from "react";
+import { Grid, GridItem, HStack } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import AnimeGrid from "./components/AnimeGrid";
 import GenreList from "./components/GenreList";
-import { useState } from "react";
-import { Genre } from "./hooks/useGenres";
 import MediaTypeSelector from "./components/MediaTypeSelector";
+import SortSelector from "./components/SortSelector";
+import { Genre } from "./hooks/useGenres";
 import { AnimeType } from "./utils/animeType";
 
 export interface AnimeQuery {
@@ -34,10 +35,13 @@ function App() {
         />
       </GridItem>
       <GridItem area="main">
-        <MediaTypeSelector
-          selectedMediaType={animeQuery.type}
-          onSelectMediaType={(type) => setAnimeQuery({ ...animeQuery, type })}
-        />
+        <HStack spaceX={5} paddingLeft={2} marginBottom={5}>
+          <MediaTypeSelector
+            selectedMediaType={animeQuery.type}
+            onSelectMediaType={(type) => setAnimeQuery({ ...animeQuery, type })}
+          />
+          <SortSelector></SortSelector>
+        </HStack>
         <AnimeGrid animeQuery={animeQuery} />
       </GridItem>
     </Grid>
