@@ -22,6 +22,8 @@ const useAnimes = (animeQuery: AnimeQuery) =>
       params: {
         genres: animeQuery.genre?.mal_id,
         ...(animeQuery.type !== "All" && { type: animeQuery.type }),
+        order_by: animeQuery.orderBy,
+        sort: animeQuery.orderDirection,
       },
     },
     [animeQuery]

@@ -9,7 +9,11 @@ const GenreBadge = ({ anime }: Props) => {
   return (
     <>
       {anime.genres.map((genre) => (
-        <Badge size="sm" variant="surface">
+        <Badge
+          key={Math.random() + parseInt(genre.name)}
+          size="sm"
+          variant="surface"
+        >
           {genre.name}
         </Badge>
       ))}

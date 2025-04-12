@@ -17,7 +17,9 @@ interface Props {
 }
 
 const AnimeCard = ({ anime }: Props) => {
-  const type = anime.type as keyof typeof animeTypeData;
+  const type = (
+    anime.type in animeTypeData ? anime.type : "TV"
+  ) as keyof typeof animeTypeData;
   const IconComponent = animeTypeData[type].icon || animeTypeData.TV.icon;
 
   return (

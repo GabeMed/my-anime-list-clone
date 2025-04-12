@@ -1,22 +1,43 @@
 import { Menu, Button, Portal } from "@chakra-ui/react";
 
-const SortSelector = () => {
+interface Props {
+  selectedSortOrder: string;
+  onSelectSortOrder: (sortBy: string, sortDirection: string) => void;
+}
+
+const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
+  const sortOrder = [
+    { sortBy: "title", sortDirection: "asc", label: "Name" },
+    { sortBy: "start_date", sortDirection: "desc", label: "Release date" },
+    { sortBy: "popularity", sortDirection: "asc", label: "Popularity" },
+    { sortBy: "score", sortDirection: "desc", label: "Score" },
+  ];
+
+  const currentOrder = sortOrder.find(
+    (order) => order.sortBy === selectedSortOrder
+  );
+
   return (
     <Menu.Root>
       <Menu.Trigger asChild>
         <Button variant="subtle" size="md" fontSize="md">
-          Order By: Relevance
+          Order By: {currentOrder?.label || "Relevance"}
         </Button>
       </Menu.Trigger>
       <Portal>
         <Menu.Positioner>
           <Menu.Content>
-            <Menu.Item value="relevance">Relevance</Menu.Item>
-            <Menu.Item value="date">Date added</Menu.Item>
-            <Menu.Item value="name">Name</Menu.Item>
-            <Menu.Item value="release">Release date</Menu.Item>
-            <Menu.Item value="popularity">Popularity</Menu.Item>
-            <Menu.Item value="score">Score</Menu.Item>
+            {sortOrder.map((order) => (
+              <Menu.Item
+                onClick={() =>
+                  onSelectSortOrder(order.sortBy, order.sortDirection)
+                }
+                key={order.label}
+                value={order.sortBy}
+              >
+                {order.label}
+              </Menu.Item>
+            ))}
           </Menu.Content>
         </Menu.Positioner>
       </Portal>

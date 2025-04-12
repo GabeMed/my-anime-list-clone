@@ -11,6 +11,8 @@ import { AnimeType } from "./utils/animeType";
 export interface AnimeQuery {
   genre: Genre | null;
   type: AnimeType | "All";
+  orderBy: string;
+  orderDirection: string;
 }
 
 function App() {
@@ -40,7 +42,12 @@ function App() {
             selectedMediaType={animeQuery.type}
             onSelectMediaType={(type) => setAnimeQuery({ ...animeQuery, type })}
           />
-          <SortSelector></SortSelector>
+          <SortSelector
+            selectedSortOrder={animeQuery.orderBy}
+            onSelectSortOrder={(orderBy, orderDirection) =>
+              setAnimeQuery({ ...animeQuery, orderBy, orderDirection })
+            }
+          ></SortSelector>
         </HStack>
         <AnimeGrid animeQuery={animeQuery} />
       </GridItem>
