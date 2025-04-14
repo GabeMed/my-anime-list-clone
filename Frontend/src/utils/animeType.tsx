@@ -18,12 +18,11 @@ export type AnimeType =
   | "ONA"
   | "Music"
   | "CM"
-  | "PV"
-  | "TV Special";
+  | "PV";
 
 export const animeTypeData: Record<
   AnimeType,
-  { icon: IconType; color: string }
+  { icon?: IconType; color: string }
 > = {
   TV: { icon: FaTv, color: "blue" },
   OVA: { icon: FaCompactDisc, color: "purple" },
@@ -33,5 +32,4 @@ export const animeTypeData: Record<
   Music: { icon: FaMusic, color: "pink" },
   CM: { icon: FaBullhorn, color: "orange" },
   PV: { icon: FaPlay, color: "teal" },
-  "TV Special": { icon: FaTv, color: "cyan" },
 };
