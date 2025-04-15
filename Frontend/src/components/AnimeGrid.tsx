@@ -17,7 +17,7 @@ const AnimeGrid = ({ animeQuery }: Props) => {
     <>
       {error && <Text>{error}</Text>}
       <SimpleGrid
-        columns={{ sm: 1, md: 2, lg: 2, xl: 3 }} //todo adjust responsive logic
+        columns={{ base: 1, lg: 2, xl: 3 }} //todo adjust responsive logic
         padding="10px"
         columnGap={4}
         rowGap={10}

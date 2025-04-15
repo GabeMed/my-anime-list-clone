@@ -2,6 +2,13 @@ import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
 const config = defineConfig({
   theme: {
+    breakpoints: {
+      base: "0px",
+      sm: "480px",
+      md: "768px",
+      lg: "1264px",
+      xl: "1780px",
+    },
     tokens: {
       colors: {
         gray: {

@@ -27,7 +27,7 @@ function App() {
       <Grid
         templateAreas={{
           base: `"nav" "main"`,
-          lg: `"nav nav" "aside main"`,
+          md: `"nav nav" "aside main"`,
         }}
       >
         <GridItem area="nav">
@@ -37,7 +37,7 @@ function App() {
             }}
           />
         </GridItem>
-        <GridItem area="aside" hideBelow="lg">
+        <GridItem area="aside">
           <GenreList
             selectedGenre={animeQuery.genre}
             onSelectGenre={(genre) => setAnimeQuery({ ...animeQuery, genre })}
