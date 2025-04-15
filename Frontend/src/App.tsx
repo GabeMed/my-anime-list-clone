@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Grid, GridItem, HStack } from "@chakra-ui/react";
+import { Box, Grid, GridItem, HStack } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import AnimeGrid from "./components/AnimeGrid";
 import GenreList from "./components/GenreList";
@@ -7,6 +7,7 @@ import MediaTypeSelector from "./components/MediaTypeSelector";
 import SortSelector from "./components/SortSelector";
 import { Genre } from "./hooks/useGenres";
 import { AnimeType } from "./utils/animeType";
+import AnimeHeading from "./components/AnimeHeading";
 
 export interface AnimeQuery {
   genre: Genre | null;
@@ -42,18 +43,23 @@ function App() {
         />
       </GridItem>
       <GridItem area="main">
-        <HStack spaceX={5} paddingLeft={2} marginBottom={5}>
-          <MediaTypeSelector
-            selectedMediaType={animeQuery.type}
-            onSelectMediaType={(type) => setAnimeQuery({ ...animeQuery, type })}
-          />
-          <SortSelector
-            selectedSortOrder={animeQuery.orderBy}
-            onSelectSortOrder={(orderBy, orderDirection) =>
-              setAnimeQuery({ ...animeQuery, orderBy, orderDirection })
-            }
-          ></SortSelector>
-        </HStack>
+        <Box paddingLeft={2}>
+          <AnimeHeading animeQuery={animeQuery} />
+          <HStack spaceX={5} marginBottom={5}>
+            <MediaTypeSelector
+              selectedMediaType={animeQuery.type}
+              onSelectMediaType={(type) =>
+                setAnimeQuery({ ...animeQuery, type })
+              }
+            />
+            <SortSelector
+              selectedSortOrder={animeQuery.orderBy}
+              onSelectSortOrder={(orderBy, orderDirection) =>
+                setAnimeQuery({ ...animeQuery, orderBy, orderDirection })
+              }
+            ></SortSelector>
+          </HStack>
+        </Box>
         <AnimeGrid animeQuery={animeQuery} />
       </GridItem>
     </Grid>
