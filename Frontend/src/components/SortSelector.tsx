@@ -7,6 +7,7 @@ interface Props {
 
 const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
   const sortOrder = [
+    { label: "Relevance" },
     { sortBy: "title", sortDirection: "asc", label: "Name" },
     { sortBy: "start_date", sortDirection: "desc", label: "Release date" },
     { sortBy: "popularity", sortDirection: "asc", label: "Popularity" },
@@ -29,11 +30,13 @@ const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
           <Menu.Content>
             {sortOrder.map((order) => (
               <Menu.Item
-                onClick={() =>
-                  onSelectSortOrder(order.sortBy, order.sortDirection)
-                }
+                onClick={() => {
+                  order.sortBy
+                    ? onSelectSortOrder(order.sortBy, order.sortDirection)
+                    : onSelectSortOrder("", "");
+                }}
                 key={order.label}
-                value={order.sortBy}
+                value={order.sortBy || "default"}
               >
                 {order.label}
               </Menu.Item>
