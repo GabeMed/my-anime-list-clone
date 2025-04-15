@@ -31,11 +31,9 @@ const AnimeCard = ({ anime }: Props) => {
         aspectRatio={6 / 9}
       />
       <Card.Body p="4">
-        <HStack w="100%" justifyContent="space-between">
-          <Heading size="xl">{anime.title}</Heading>
+        <Heading size="md">{anime.title}</Heading>
+        <HStack paddingTop="2" w="100%">
           <MalScore score={anime.score} />
-        </HStack>
-        <HStack paddingTop="2">
           <Badge size="lg" colorPalette={animeTypeData[type].color}>
             <Icon as={IconComponent} />
             <Text>{type}</Text>
