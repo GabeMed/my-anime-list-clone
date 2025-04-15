@@ -23,7 +23,7 @@ const AnimeCard = ({ anime }: Props) => {
   const IconComponent = animeTypeData[type].icon || animeTypeData.TV.icon;
 
   return (
-    <Card.Root flexDirection="row" boxSize="65">
+    <Card.Root flexDirection="row" boxSize="65" border="hidden">
       <Image
         src={anime.images.webp.large_image_url}
         maxH="md"

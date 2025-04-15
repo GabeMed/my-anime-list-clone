@@ -23,46 +23,48 @@ function App() {
   } as AnimeQuery);
 
   return (
-    <Grid
-      templateAreas={{
-        base: `"nav" "main"`,
-        lg: `"nav nav" "aside main"`,
-      }}
-    >
-      <GridItem area="nav">
-        <NavBar
-          onSearch={(searchText) => {
-            setAnimeQuery({ ...animeQuery, searchText });
-          }}
-        />
-      </GridItem>
-      <GridItem area="aside" hideBelow="lg">
-        <GenreList
-          selectedGenre={animeQuery.genre}
-          onSelectGenre={(genre) => setAnimeQuery({ ...animeQuery, genre })}
-        />
-      </GridItem>
-      <GridItem area="main">
-        <Box paddingLeft={2}>
-          <AnimeHeading animeQuery={animeQuery} />
-          <HStack spaceX={5} marginBottom={5}>
-            <MediaTypeSelector
-              selectedMediaType={animeQuery.type}
-              onSelectMediaType={(type) =>
-                setAnimeQuery({ ...animeQuery, type })
-              }
-            />
-            <SortSelector
-              selectedSortOrder={animeQuery.orderBy}
-              onSelectSortOrder={(orderBy, orderDirection) =>
-                setAnimeQuery({ ...animeQuery, orderBy, orderDirection })
-              }
-            ></SortSelector>
-          </HStack>
-        </Box>
-        <AnimeGrid animeQuery={animeQuery} />
-      </GridItem>
-    </Grid>
+    <Box bg="background" color="text" minH="100vh">
+      <Grid
+        templateAreas={{
+          base: `"nav" "main"`,
+          lg: `"nav nav" "aside main"`,
+        }}
+      >
+        <GridItem area="nav">
+          <NavBar
+            onSearch={(searchText) => {
+              setAnimeQuery({ ...animeQuery, searchText });
+            }}
+          />
+        </GridItem>
+        <GridItem area="aside" hideBelow="lg">
+          <GenreList
+            selectedGenre={animeQuery.genre}
+            onSelectGenre={(genre) => setAnimeQuery({ ...animeQuery, genre })}
+          />
+        </GridItem>
+        <GridItem area="main">
+          <Box paddingLeft={2}>
+            <AnimeHeading animeQuery={animeQuery} />
+            <HStack spaceX={5} marginBottom={5}>
+              <MediaTypeSelector
+                selectedMediaType={animeQuery.type}
+                onSelectMediaType={(type) =>
+                  setAnimeQuery({ ...animeQuery, type })
+                }
+              />
+              <SortSelector
+                selectedSortOrder={animeQuery.orderBy}
+                onSelectSortOrder={(orderBy, orderDirection) =>
+                  setAnimeQuery({ ...animeQuery, orderBy, orderDirection })
+                }
+              ></SortSelector>
+            </HStack>
+          </Box>
+          <AnimeGrid animeQuery={animeQuery} />
+        </GridItem>
+      </Grid>
+    </Box>
   );
 }
 
