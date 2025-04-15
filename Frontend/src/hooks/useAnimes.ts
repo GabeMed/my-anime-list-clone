@@ -24,6 +24,7 @@ const useAnimes = (animeQuery: AnimeQuery) =>
         ...(animeQuery.type !== "All" && { type: animeQuery.type }),
         order_by: animeQuery.orderBy,
         sort: animeQuery.orderDirection,
+        q: animeQuery.searchText,
       },
     },
     [animeQuery]

@@ -13,6 +13,7 @@ export interface AnimeQuery {
   type: AnimeType | "All";
   orderBy: string;
   orderDirection: string;
+  searchText: string;
 }
 
 function App() {
@@ -28,7 +29,11 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar />
+        <NavBar
+          onSearch={(searchText) => {
+            setAnimeQuery({ ...animeQuery, searchText });
+          }}
+        />
       </GridItem>
       <GridItem area="aside" hideBelow="lg">
         <GenreList
