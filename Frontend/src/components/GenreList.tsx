@@ -1,5 +1,5 @@
 import useGenres, { Genre } from "@/hooks/useGenres";
-import { Button, List, Spinner, Text } from "@chakra-ui/react";
+import { Button, List } from "@chakra-ui/react";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
@@ -7,7 +7,7 @@ interface Props {
 }
 
 const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
-  const { data, isLoading, error } = useGenres();
+  const { data } = useGenres();
 
   return (
     <List.Root>
