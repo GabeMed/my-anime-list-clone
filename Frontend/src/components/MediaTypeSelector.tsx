@@ -1,4 +1,4 @@
-import { Menu } from "@chakra-ui/react/menu";
+import { Menu } from "@chakra-ui/react";
 import { Button, Portal } from "@chakra-ui/react";
 import { AnimeType, animeTypeData } from "@/utils/animeType";
 
