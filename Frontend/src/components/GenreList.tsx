@@ -11,7 +11,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
 
   return (
     <List.Root>
-      {data.map((genre) => (
+      {data?.data.map((genre) => (
         <List.Item key={genre.mal_id} padding="5px">
           <Button
             fontWeight={
