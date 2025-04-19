@@ -13,7 +13,7 @@ const AnimeGrid = ({ animeQuery }: Props) => {
   const { data, error, isLoading } = useAnimes(animeQuery);
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
 
   return (
     <SimpleGrid
@@ -30,7 +30,7 @@ const AnimeGrid = ({ animeQuery }: Props) => {
             </AnimeCardContainer>
           )
       )}
-      {data.map((anime) => (
+      {data?.data.map((anime) => (
         <AnimeCardContainer key={anime.mal_id}>
           <AnimeCard anime={anime} />
         </AnimeCardContainer>
