@@ -1,81 +1,113 @@
-# myAnimeListClone
+# MyAnimes - (myanimelist clone) 🎮
 
-Esse é um aplicativo web desenvolvido com **React** e **TypeScript** que utiliza a **Jikan API** para buscar e exibir informações sobre animes. O projeto usa **Chakra UI** para a interface e **Axios** para realizar requisições HTTP, proporcionando uma experiência fluida e moderna para os fãs de anime.
-
-## ✨ Features
-
-- **Busca de Animes por Gênero**: Explore animes filtrados por gêneros específicos.
-- **Interface Responsiva**: Desenvolvido com Chakra UI para garantir um design moderno e adaptável.
-- **Hooks Personalizados**: Utiliza hooks React para organização de lógica de requisição HTTP.
-- **TypeScript**: Tipagem forte para maior segurança e produtividade no desenvolvimento.
-
-## 📚 Tecnologias Utilizadas
-
-- **React** – Biblioteca para a construção de interfaces de usuário.
-- **TypeScript** – Superset do JavaScript com tipagem estática.
-- **Chakra UI** – Biblioteca de componentes de interface acessíveis e elegantes.
-- **Axios** – Cliente HTTP para consumo da Jikan API.
-- **Jikan API** – API não oficial para acesso aos dados do MyAnimeList.
-
-## 📁 Estrutura do Projeto
-
-```
-Anime-Genres-Explorer/
-├── public/                 # Arquivos públicos (index.html, favicon, etc.)
-├── src/
-│   ├── assets/             # Recursos estáticos (imagens, ícones, etc.)
-│   ├── components/         # Componentes reutilizáveis do React
-│   ├── hooks/              # Custom hooks (ex.: useData, useAnimeByGenre)
-│   ├── services/           # Configuração do Axios e serviços de API
-│   ├── App.tsx             # Componente principal
-│   └── main.tsx            # Ponto de entrada da aplicação
-├── package.json            # Gerenciamento de dependências
-└── tsconfig.json           # Configurações do TypeScript
-```
-
-## ⚡ Instalação
-
-1. Clone o repositório:
-
-```bash
-git clone https://github.com/GabeMed/my-anime-list-clone.git
-cd my-anime-list-clone
-```
-
-2. Instale as dependências:
-
-```bash
-npm install
-```
-
-## 🔧 Uso
-
-Inicie a aplicação em ambiente de desenvolvimento:
-
-```bash
-npm run dev
-```
-
-Acesse em: [http://localhost:5173](http://localhost:5173)
-
-- Selecione um gênero na barra lateral para visualizar animes relacionados.
-
-## 👨‍💻 Contribuições
-
-Contribuições são bem-vindas! Para contribuir:
-
-1. Faça um fork do repositório.
-2. Crie uma branch para sua feature: `git checkout -b minha-feature`
-3. Commit suas alterações: `git commit -m 'Adiciona nova feature'`
-4. Envie para o GitHub: `git push origin minha-feature`
-5. Abra um Pull Request.
-
-## 📝 Licença
-
-Este projeto está licenciado sob a [MIT License](LICENSE).
+This project is a personal adaptation of the myAnimeList website, that is being developed with the intention of sharpening my Frontend Skills. It follows the best pratices of architecture and design principles recommended for react applications. 
 
 ---
 
-Desenvolvido por [Gabriel Medeiros](https://github.com/GabeMed)
+## 📦 Tech Stack
 
+- **React 18**
+- **TypeScript**
+- **Chakra UI** (with token-based theming and color mode switching)
+- **Vite** (bundler)
+- **Zustand** (state management)
+- **React Query** (data fetching)
+- **React Router DOM v6** (routing)
+- **Custom Theming System** with Chakra + `createSystem`
+- **Responsive Design** using Chakra Grid + breakpoints
+
+---
+
+## 🚧 Project Overview
+
+This is a two-phase project that evolves over time. The app is a media browser that fetches and filters anime titles, very similar to the [myAnimeList](https://myanimelist.net/) website.
+
+---
+
+## ✅ Part 1 - Completed Features
+
+> 📍 [First phase code](https://github.com/GabeMed/my-anime-list-clone/commit/3d1c7cb23df876b9300d67e8ebc339e8a06739f2).
+
+The first phase of the project includes all the core UI and filtering logic:
+
+### Features
+- 🎨 Light/Dark mode with customized color palettes
+- 🧭 Side panel for genre selection
+- 🔍 Search input with live filtering
+- 📱 Fully responsive grid layout
+- 🔃 Loading skeletons
+- 🔘 Custom color mode switch using `next-themes` and Chakra UI
+- 🎛️ Clean component structure
+
+### Theme Customization
+- Semantic tokens configured for background and text based on color mode
+- Custom `gray` palette used across the application
+- Accessible contrast in both themes
+
+---
+
+## 🚀 Part 2 - Upcoming Features
+
+> 🔨 This is being developed in this repo.
+
+The following features will be implemented:
+
+### Planned Features
+- 📄 Detail pages with dynamic routes for anime
+- 🌟 Platform, rating, and release year filters
+- 📷 Thumbnail and meta information display improvements
+- ⚙️ API integration with detailed info per item
+- 🧠 Better global state management with Zustand selectors
+- 💬 Review sections or user interactions
+
+### Dev Enhancements
+- 🌐 Deployment-ready Vite config
+- 💡 Accessibility improvements
+- ✅ TypeScript strict mode & custom hooks
+- 🧪 Unit and integration tests (maybe)
+
+---
+
+## 🔗 Project Milestones
+
+| Phase | Description | Status |
+|-------|-------------|--------|
+| Part 1 | Core layout, filtering, theming, and responsiveness | ✅ Complete |
+| Part 2 | Routing, filtering enhancements, detailed pages | 🚧 In Progress |
+
+---
+
+## 📂 Structure
+
+```bash
+src/
+├── components/
+│   ├── ui/              # Chakra-based UI wrappers
+│   ├── layout/          # Grid and layout helpers
+│   └── features/        # Domain-specific components (GenreList, AnimeCard, etc.)
+├── hooks/               # Custom hooks
+├── data/                # Static/mock data (in early stages)
+├── theme/               # Chakra system + design tokens
+├── App.tsx              # Root layout
+├── main.tsx             # Vite/React bootstrap
+```
+
+---
+
+## 📍 Reference Commit for Part 1
+
+You can view the completed first phase here:
+**👉 [PART 1](https://github.com/GabeMed/my-anime-list-clone/commit/3d1c7cb23df876b9300d67e8ebc339e8a06739f2)**
+
+---
+
+## ✨ Inspiration
+
+This project is inspired in [CodeWithMosh](https://github.com/mosh-hamedani/game-hub) project that makes a clone of the [Rawg](https://rawg.io/) website, and aims to explore UI/UX polish and anime-themed adaptations for a similar media browsing app.
+
+---
+
+## 📫 Contact
+
+If you're working on a similar project, feel free to reach out and connect!
 
