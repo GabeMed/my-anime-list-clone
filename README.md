@@ -1,4 +1,4 @@
-# MyAnimes - (myanimelist clone) 🎮
+# MyAnimes - (myanimelist clone) 🎌
 
 This project is a personal adaptation of the myAnimeList website, that is being developed with the intention of sharpening my Frontend Skills. It follows the best pratices of architecture and design principles recommended for react applications. 
 
@@ -26,7 +26,7 @@ This is a two-phase project that evolves over time. The app is a media browser t
 
 ## ✅ Part 1 - Completed Features
 
-> 📍 [First phase code](https://github.com/GabeMed/my-anime-list-clone/commit/3d1c7cb23df876b9300d67e8ebc339e8a06739f2).
+> 📍 [First phase code](https://github.com/GabeMed/my-anime-list-clone/tree/3d1c7cb23df876b9300d67e8ebc339e8a06739f2).
 
 The first phase of the project includes all the core UI and filtering logic:
 
@@ -97,7 +97,7 @@ src/
 ## 📍 Reference Commit for Part 1
 
 You can view the completed first phase here:
-**👉 [PART 1](https://github.com/GabeMed/my-anime-list-clone/commit/3d1c7cb23df876b9300d67e8ebc339e8a06739f2)**
+**👉 [PART 1](https://github.com/GabeMed/my-anime-list-clone/tree/3d1c7cb23df876b9300d67e8ebc339e8a06739f2)**
 
 ---
 
