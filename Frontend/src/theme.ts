@@ -12,7 +12,7 @@ const config = defineConfig({
     tokens: {
       colors: {
         gray: {
-          "50": { value: "#f9f9f9" },
+          "50": { value: "#f9f9f9" }, //Todo: Adjust the color theme to work in googleChrome
           "100": { value: "#e9e9ec" },
           "200": { value: "#d4d4d9" },
           "300": { value: "#bdbdc7" },
