@@ -1,8 +1,9 @@
 import { Genre } from "./useGenres";
-import { FetchResponse } from "@/services/api-client";
+import APIClient, { FetchResponse } from "@/services/apiClient";
 import { AnimeQuery } from "@/App";
 import { useQuery } from "@tanstack/react-query";
-import apiClient from "@/services/api-client";
+
+const apiClient = new APIClient<Anime>("/anime");
 
 export interface Anime {
   mal_id: number;
@@ -21,17 +22,15 @@ const useAnimes = (animeQuery: AnimeQuery) =>
   useQuery<FetchResponse<Anime>, Error>({
     queryKey: ["anime", animeQuery],
     queryFn: () =>
-      apiClient
-        .get("/anime", {
-          params: {
-            genres: animeQuery.genre?.mal_id,
-            ...(animeQuery.type != "All" && { type: animeQuery.type }),
-            order_by: animeQuery.orderBy,
-            sort: animeQuery.orderDirection,
-            q: animeQuery.searchText,
-          },
-        })
-        .then((res) => res.data),
+      apiClient.getAll({
+        params: {
+          genres: animeQuery.genre?.mal_id,
+          ...(animeQuery.type != "All" && { type: animeQuery.type }),
+          order_by: animeQuery.orderBy,
+          sort: animeQuery.orderDirection,
+          q: animeQuery.searchText,
+        },
+      }),
     staleTime: 24 * 60 * 60 * 1000, //24h
   });
 
