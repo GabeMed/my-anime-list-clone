@@ -32,12 +32,12 @@ const useAnimes = (animeQuery: AnimeQuery) =>
           page: pageParam,
         },
       }),
-    staleTime: 24 * 60 * 60 * 1000, //24h
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.pagination.has_next_page
         ? allPages.length + 1
         : undefined;
     },
+    staleTime: 24 * 60 * 60 * 1000, //24h
   });
 
 export default useAnimes;
