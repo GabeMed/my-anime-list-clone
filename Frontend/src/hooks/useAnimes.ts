@@ -1,7 +1,7 @@
 import { Genre } from "./useGenres";
 import APIClient, { FetchResponse } from "@/services/apiClient";
 import { AnimeQuery } from "@/App";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery } from "@tanstack/react-query";
 
 const apiClient = new APIClient<Anime>("/anime");
 
@@ -19,9 +19,9 @@ export interface Anime {
 }
 
 const useAnimes = (animeQuery: AnimeQuery) =>
-  useQuery<FetchResponse<Anime>, Error>({
+  useInfiniteQuery<FetchResponse<Anime>, Error>({
     queryKey: ["anime", animeQuery],
-    queryFn: () =>
+    queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
         params: {
           genres: animeQuery.genre?.mal_id,
@@ -29,9 +29,15 @@ const useAnimes = (animeQuery: AnimeQuery) =>
           order_by: animeQuery.orderBy,
           sort: animeQuery.orderDirection,
           q: animeQuery.searchText,
+          page: pageParam,
         },
       }),
     staleTime: 24 * 60 * 60 * 1000, //24h
+    getNextPageParam: (lastPage, allPages) => {
+      return lastPage.pagination.has_next_page
+        ? allPages.length + 1
+        : undefined;
+    },
   });
 
 export default useAnimes;
