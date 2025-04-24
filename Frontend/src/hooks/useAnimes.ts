@@ -1,6 +1,7 @@
 import { Genre } from "./useGenres";
 import APIClient, { FetchResponse } from "@/services/apiClient";
 import { AnimeQuery } from "@/App";
+import ms from "ms";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 const apiClient = new APIClient<Anime>("/anime");
@@ -37,7 +38,7 @@ const useAnimes = (animeQuery: AnimeQuery) =>
         ? allPages.length + 1
         : undefined;
     },
-    staleTime: 24 * 60 * 60 * 1000, //24h
+    staleTime: ms("24h"),
   });
 
 export default useAnimes;
