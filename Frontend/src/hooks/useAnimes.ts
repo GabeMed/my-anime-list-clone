@@ -24,7 +24,7 @@ const useAnimes = (animeQuery: AnimeQuery) =>
     queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
         params: {
-          genres: animeQuery.genre?.mal_id,
+          genres: animeQuery.genreId,
           ...(animeQuery.type != "All" && { type: animeQuery.type }),
           order_by: animeQuery.orderBy,
           sort: animeQuery.orderDirection,

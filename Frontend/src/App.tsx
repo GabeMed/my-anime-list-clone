@@ -10,7 +10,7 @@ import { AnimeType } from "./utils/animeType";
 import AnimeHeading from "./components/AnimeHeading";
 
 export interface AnimeQuery {
-  genre: Genre | null;
+  genreId?: number;
   type: AnimeType | "All";
   orderBy: string;
   orderDirection: string;
@@ -39,8 +39,10 @@ function App() {
         </GridItem>
         <GridItem area="aside">
           <GenreList
-            selectedGenre={animeQuery.genre}
-            onSelectGenre={(genre) => setAnimeQuery({ ...animeQuery, genre })}
+            selectedGenreId={animeQuery.genreId}
+            onSelectGenre={(genre) =>
+              setAnimeQuery({ ...animeQuery, genreId: genre.mal_id })
+            }
           />
         </GridItem>
         <GridItem area="main">
