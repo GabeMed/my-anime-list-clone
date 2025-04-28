@@ -1,11 +1,7 @@
+import useAnimeQueryStore from "@/store";
 import { Menu, Button, Portal } from "@chakra-ui/react";
 
-interface Props {
-  selectedSortOrder: string;
-  onSelectSortOrder: (sortBy: string, sortDirection: string) => void;
-}
-
-const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
+const SortSelector = () => {
   const sortOrder = [
     { label: "Relevance" },
     { sortBy: "title", sortDirection: "asc", label: "Name" },
@@ -14,8 +10,10 @@ const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
     { sortBy: "score", sortDirection: "desc", label: "Score" },
   ];
 
+  const setSelectedOrder = useAnimeQueryStore((s) => s.setOrder);
+  const selectedOrderBy = useAnimeQueryStore((s) => s.animeQuery.orderBy);
   const currentOrder = sortOrder.find(
-    (order) => order.sortBy === selectedSortOrder
+    (order) => order.sortBy === selectedOrderBy
   );
 
   return (
@@ -32,8 +30,8 @@ const SortSelector = ({ selectedSortOrder, onSelectSortOrder }: Props) => {
               <Menu.Item
                 onClick={() => {
                   order.sortBy
-                    ? onSelectSortOrder(order.sortBy, order.sortDirection)
-                    : onSelectSortOrder("", "");
+                    ? setSelectedOrder(order.sortBy, order.sortDirection)
+                    : setSelectedOrder("", "");
                 }}
                 key={order.label}
                 value={order.sortBy || "default"}

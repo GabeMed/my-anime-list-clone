@@ -1,17 +1,15 @@
-import { AnimeQuery } from "@/App";
 import useGenres from "@/hooks/useGenres";
+import useAnimeQueryStore from "@/store";
 import { Heading } from "@chakra-ui/react";
 
-interface Props {
-  animeQuery: AnimeQuery;
-}
-
-const AnimeHeading = ({ animeQuery }: Props) => {
+const AnimeHeading = () => {
   const { data: genres } = useGenres();
 
-  const genre = genres?.data.find((g) => g.mal_id === animeQuery.genreId);
+  const selectedGenderId = useAnimeQueryStore((s) => s.animeQuery.genreId);
+  const genre = genres?.data.find((g) => g.mal_id === selectedGenderId);
 
-  const heading = `${animeQuery.type || ""} ${genre?.name || ""} Animes`;
+  const selectedType = useAnimeQueryStore((s) => s.animeQuery.type);
+  const heading = `${selectedType || ""} ${genre?.name || ""} Animes`;
 
   return (
     <Heading as="h1" fontSize="5xl" marginY={5}>

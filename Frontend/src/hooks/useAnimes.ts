@@ -1,8 +1,8 @@
-import { Genre } from "./useGenres";
 import APIClient, { FetchResponse } from "@/services/apiClient";
-import { AnimeQuery } from "@/App";
-import ms from "ms";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import ms from "ms";
+import useAnimeQueryStore from "../store";
+import { Genre } from "./useGenres";
 
 const apiClient = new APIClient<Anime>("/anime");
 
@@ -19,8 +19,10 @@ export interface Anime {
   };
 }
 
-const useAnimes = (animeQuery: AnimeQuery) =>
-  useInfiniteQuery<FetchResponse<Anime>, Error>({
+const useAnimes = () => {
+  const animeQuery = useAnimeQueryStore((s) => s.animeQuery);
+
+  return useInfiniteQuery<FetchResponse<Anime>, Error>({
     queryKey: ["anime", animeQuery],
     queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
@@ -40,5 +42,6 @@ const useAnimes = (animeQuery: AnimeQuery) =>
     },
     staleTime: ms("24h"),
   });
+};
 
 export default useAnimes;

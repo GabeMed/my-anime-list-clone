@@ -1,13 +1,11 @@
 import useGenres, { Genre } from "@/hooks/useGenres";
+import useAnimeQueryStore from "@/store";
 import { Button, List } from "@chakra-ui/react";
 
-interface Props {
-  onSelectGenre: (genre: Genre) => void;
-  selectedGenreId?: number;
-}
-
-const GenreList = ({ onSelectGenre, selectedGenreId }: Props) => {
+const GenreList = () => {
   const { data } = useGenres();
+  const selectedGenreId = useAnimeQueryStore((s) => s.animeQuery.genreId);
+  const setSelectedGenreId = useAnimeQueryStore((s) => s.setGenderId);
 
   return (
     <List.Root>
@@ -16,7 +14,7 @@ const GenreList = ({ onSelectGenre, selectedGenreId }: Props) => {
           <Button
             fontWeight={genre.mal_id === selectedGenreId ? "bold" : "normal"}
             variant={genre.mal_id === selectedGenreId ? "subtle" : "ghost"}
-            onClick={() => onSelectGenre(genre)}
+            onClick={() => setSelectedGenreId(genre.mal_id)}
             fontSize="large"
             w="full"
           >

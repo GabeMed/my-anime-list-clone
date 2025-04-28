@@ -1,4 +1,3 @@
-import { AnimeQuery } from "@/App";
 import useAnimes from "@/hooks/useAnimes";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import React from "react";
@@ -7,11 +6,7 @@ import AnimeCard from "./AnimeCard";
 import AnimeCardContainer from "./AnimeCardContainer";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
 
-interface Props {
-  animeQuery: AnimeQuery;
-}
-
-const AnimeGrid = ({ animeQuery }: Props) => {
+const AnimeGrid = () => {
   const {
     data,
     error,
@@ -19,7 +14,7 @@ const AnimeGrid = ({ animeQuery }: Props) => {
     hasNextPage,
     isFetchingNextPage,
     fetchNextPage,
-  } = useAnimes(animeQuery);
+  } = useAnimes();
 
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 

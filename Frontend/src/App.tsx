@@ -1,27 +1,12 @@
-import { useState } from "react";
 import { Box, Grid, GridItem, HStack } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
 import AnimeGrid from "./components/AnimeGrid";
+import AnimeHeading from "./components/AnimeHeading";
 import GenreList from "./components/GenreList";
 import MediaTypeSelector from "./components/MediaTypeSelector";
+import NavBar from "./components/NavBar";
 import SortSelector from "./components/SortSelector";
-import { Genre } from "./hooks/useGenres";
-import { AnimeType } from "./utils/animeType";
-import AnimeHeading from "./components/AnimeHeading";
-
-export interface AnimeQuery {
-  genreId?: number;
-  type: AnimeType | "All";
-  orderBy: string;
-  orderDirection: string;
-  searchText: string;
-}
 
 function App() {
-  const [animeQuery, setAnimeQuery] = useState<AnimeQuery>({
-    type: "All",
-  } as AnimeQuery);
-
   return (
     <Box bg="background" color="text" minH="100vh">
       <Grid
@@ -31,39 +16,20 @@ function App() {
         }}
       >
         <GridItem area="nav">
-          <NavBar
-            onSearch={(searchText) => {
-              setAnimeQuery({ ...animeQuery, searchText });
-            }}
-          />
+          <NavBar />
         </GridItem>
         <GridItem area="aside">
-          <GenreList
-            selectedGenreId={animeQuery.genreId}
-            onSelectGenre={(genre) =>
-              setAnimeQuery({ ...animeQuery, genreId: genre.mal_id })
-            }
-          />
+          <GenreList />
         </GridItem>
         <GridItem area="main">
           <Box paddingLeft={2}>
-            <AnimeHeading animeQuery={animeQuery} />
+            <AnimeHeading />
             <HStack spaceX={5} marginBottom={5}>
-              <MediaTypeSelector
-                selectedMediaType={animeQuery.type}
-                onSelectMediaType={(type) =>
-                  setAnimeQuery({ ...animeQuery, type })
-                }
-              />
-              <SortSelector
-                selectedSortOrder={animeQuery.orderBy}
-                onSelectSortOrder={(orderBy, orderDirection) =>
-                  setAnimeQuery({ ...animeQuery, orderBy, orderDirection })
-                }
-              ></SortSelector>
+              <MediaTypeSelector />
+              <SortSelector></SortSelector>
             </HStack>
           </Box>
-          <AnimeGrid animeQuery={animeQuery} />
+          <AnimeGrid />
         </GridItem>
       </Grid>
     </Box>
