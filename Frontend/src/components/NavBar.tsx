@@ -5,7 +5,7 @@ import SearchInput from "./SearchInput";
 
 const NavBar = () => {
   return (
-    <HStack justifyContent="space-between" padding="10px">
+    <HStack bg="background" justifyContent="space-between" padding="10px">
       <HStack>
         <Image src={logo} boxSize="60px" />
         <Text fontSize="2xl" fontWeight="bold">
