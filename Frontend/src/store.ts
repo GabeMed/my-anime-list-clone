@@ -14,7 +14,10 @@ export interface AnimeQueryStore {
   setSearchText: (searchText: string) => void;
   setGenderId: (genderId: number) => void;
   setType: (type: AnimeType | "All") => void;
-  setOrder: (orderBy: string, orderDirection: string) => void;
+  setOrder: (
+    orderBy: string | undefined,
+    orderDirection: string | undefined
+  ) => void;
 }
 
 const useAnimeQueryStore = create<AnimeQueryStore>((set) => ({

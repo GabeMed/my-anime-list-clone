@@ -3,7 +3,7 @@ import { Menu, Button, Portal } from "@chakra-ui/react";
 
 const SortSelector = () => {
   const sortOrder = [
-    { label: "Relevance" },
+    { sortBy: undefined, sortDirection: undefined, label: "Relevance" },
     { sortBy: "title", sortDirection: "asc", label: "Name" },
     { sortBy: "start_date", sortDirection: "desc", label: "Release date" },
     { sortBy: "popularity", sortDirection: "asc", label: "Popularity" },
@@ -29,9 +29,7 @@ const SortSelector = () => {
             {sortOrder.map((order) => (
               <Menu.Item
                 onClick={() => {
-                  order.sortBy
-                    ? setSelectedOrder(order.sortBy, order.sortDirection)
-                    : setSelectedOrder("", "");
+                  setSelectedOrder(order.sortBy, order.sortDirection);
                 }}
                 key={order.label}
                 value={order.sortBy || "default"}

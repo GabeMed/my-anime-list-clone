@@ -5,8 +5,11 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import AnimeCard from "./AnimeCard";
 import AnimeCardContainer from "./AnimeCardContainer";
 import AnimeCardSkeleton from "./AnimeCardSkeleton";
+import useAnimeQueryStore from "@/store";
 
 const AnimeGrid = () => {
+  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
   const {
     data,
     error,
@@ -16,15 +19,16 @@ const AnimeGrid = () => {
     fetchNextPage,
   } = useAnimes();
 
-  const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
   if (error) return <Text>{error.message}</Text>;
 
   const fetchedAnimesCount =
     data?.pages.reduce((acc, page) => acc + page.data.length, 0) || 0;
 
+  const animeQuery = useAnimeQueryStore((s) => s.animeQuery);
+
   return (
     <InfiniteScroll
+      key={JSON.stringify(animeQuery)} //! Important if you dont set the key there will be a Huge Mess
       dataLength={fetchedAnimesCount}
       hasMore={!!hasNextPage}
       next={() => fetchNextPage()}

@@ -23,7 +23,6 @@ const useAnimes = () => {
   const animeQuery = useAnimeQueryStore((s) => s.animeQuery);
 
   return useInfiniteQuery<FetchResponse<Anime>, Error>({
-    //! Old mistake back again, showing old filtering results after changing the filter
     queryKey: ["anime", animeQuery],
     queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
@@ -42,6 +41,7 @@ const useAnimes = () => {
         : undefined;
     },
     staleTime: ms("24h"),
+    keepPreviousData: false,
   });
 };
 
