@@ -15,7 +15,7 @@ const MalScore = ({ score }: Props) => {
       fontSize="lg"
       fontWeight="bold"
     >
-      {score ? score : "---"}
+      {score ? score.toFixed(2) : "---"}
     </Badge>
   );
 };
