@@ -11,6 +11,7 @@ import {
 import MalScore from "./MalScore";
 import GenreBadge from "./GenreBadge";
 import { animeTypeData } from "@/utils/animeType";
+import { Link } from "react-router-dom";
 
 interface Props {
   anime: Anime;
@@ -31,7 +32,9 @@ const AnimeCard = ({ anime }: Props) => {
         aspectRatio={6 / 9}
       />
       <Card.Body p="4">
-        <Heading size="md">{anime.title}</Heading>
+        <Heading size="md">
+          <Link to={"/anime/" + anime.mal_id}>{anime.title}</Link>
+        </Heading>
         <HStack paddingTop="2" w="100%">
           <MalScore score={anime.score} />
           <Badge size="lg" colorPalette={animeTypeData[type].color}>

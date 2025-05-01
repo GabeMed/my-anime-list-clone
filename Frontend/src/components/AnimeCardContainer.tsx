@@ -15,7 +15,7 @@ const AnimeCardContainer = ({ children }: Props) => {
       boxShadow="0px 8px 20px rgba(0, 0, 0, 0.1)"
       transition="transform 0.3s, box-shadow 0.3s"
       _hover={{
-        transform: "translateY(-4px)",
+        transform: "scale(1.03)",
         boxShadow: "0px 12px 25px rgba(0, 0, 0, 0.15)",
       }}
     >

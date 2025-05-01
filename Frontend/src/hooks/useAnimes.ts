@@ -4,11 +4,12 @@ import ms from "ms";
 import useAnimeQueryStore from "../store";
 import { Genre } from "./useGenres";
 
-const apiClient = new APIClient<Anime>("/anime");
+const apiClient = new APIClient<Anime[]>("/anime");
 
 export interface Anime {
   mal_id: number;
   title: string;
+  synopsis: string;
   genres: Genre[];
   score: number;
   type: string;
@@ -22,7 +23,7 @@ export interface Anime {
 const useAnimes = () => {
   const animeQuery = useAnimeQueryStore((s) => s.animeQuery);
 
-  return useInfiniteQuery<FetchResponse<Anime>, Error>({
+  return useInfiniteQuery<FetchResponse<Anime[]>, Error>({
     queryKey: ["anime", animeQuery],
     queryFn: ({ pageParam = 1 }) =>
       apiClient.getAll({
