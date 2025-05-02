@@ -8,10 +8,9 @@ const NavBar = () => {
   return (
     <HStack bg="background" justifyContent="space-between" padding="10px">
       <HStack>
-        <Image src={logo} boxSize="60px" />
-        <Text fontSize="2xl" fontWeight="bold">
-          <Link to="/"> MyAnimes</Link>
-        </Text>
+        <Link to="/">
+          <Image src={logo} boxSize="60px" />
+        </Link>
       </HStack>
       <Box paddingLeft={10} width="100%">
         <SearchInput />
