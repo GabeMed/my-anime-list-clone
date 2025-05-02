@@ -27,6 +27,13 @@ const AnimeAttributes = ({ anime }: Props) => {
       <DefinitionItem term="MyAnimeList">
         <MalScore score={anime.score} />
       </DefinitionItem>
+      {anime.streaming.length > 0 && (
+        <DefinitionItem term="Streaming">
+          {anime.streaming.map((stream) => (
+            <Text key={stream.url}>{stream.name}</Text>
+          ))}
+        </DefinitionItem>
+      )}
     </SimpleGrid>
   );
 };
