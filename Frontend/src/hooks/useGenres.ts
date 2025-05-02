@@ -1,9 +1,9 @@
-import Genres from "@/data/genres";
+import genres from "@/data/genres";
 import APIClient, { FetchResponse } from "@/services/apiClient";
 import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
 
-const apiClient = new APIClient<Genre>("/genres/anime");
+const apiClient = new APIClient<Genre[]>("/genres/anime");
 
 export interface Genre {
   mal_id: number;
@@ -13,11 +13,11 @@ export interface Genre {
 }
 
 const useGenres = () =>
-  useQuery<FetchResponse<Genre>>({
+  useQuery<FetchResponse<Genre[]>>({
     queryKey: ["genres"],
     queryFn: apiClient.getAll,
     staleTime: ms("24h"),
-    initialData: Genres,
+    initialData: genres,
   });
 
 export default useGenres;
