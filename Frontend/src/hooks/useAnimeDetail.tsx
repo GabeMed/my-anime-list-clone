@@ -7,7 +7,7 @@ const apiClient = new APIClient<FetchResponse<Anime>>("/anime");
 const useAnimeDetail = (id: string) =>
   useQuery<FetchResponse<Anime>, Error>({
     queryKey: ["animeDetail", id],
-    queryFn: () => apiClient.get(id),
+    queryFn: () => apiClient.get(id, "/full"),
     retry: 3,
   });
 
