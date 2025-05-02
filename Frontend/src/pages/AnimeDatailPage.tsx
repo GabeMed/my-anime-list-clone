@@ -1,5 +1,6 @@
+import ExpandableText from "@/components/ExpandableText";
 import useAnimeDetail from "@/hooks/useAnimeDetail";
-import { Box, Heading, Spinner, Text } from "@chakra-ui/react";
+import { Box, Heading, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
 const AnimeDatailPage = () => {
@@ -14,7 +15,9 @@ const AnimeDatailPage = () => {
   return (
     <Box padding={5}>
       <Heading size="7xl">{anime.title}</Heading>
-      <Text>{anime.synopsis}</Text>
+      <ExpandableText>
+        {anime.synopsis.slice(0, anime.synopsis.length - 25)}
+      </ExpandableText>
     </Box>
   );
 };
