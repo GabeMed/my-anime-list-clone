@@ -1,3 +1,4 @@
+import AnimeAttributes from "@/components/AnimeAttributes";
 import ExpandableText from "@/components/ExpandableText";
 import useAnimeDetail from "@/hooks/useAnimeDetail";
 import { Box, Heading, Spinner } from "@chakra-ui/react";
@@ -18,6 +19,7 @@ const AnimeDatailPage = () => {
       <ExpandableText>
         {anime.synopsis.slice(0, anime.synopsis.length - 25)}
       </ExpandableText>
+      <AnimeAttributes anime={anime} />
     </Box>
   );
 };
