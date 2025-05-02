@@ -15,13 +15,7 @@ const AnimeCharacterList = ({ charactersAndActors }: Props) => {
 
   return (
     <Box maxW="850px" marginY={5} bg="background">
-      <Heading
-        as="h3"
-        color="gray.600"
-        fontSize="2xl"
-        marginTop={5}
-        marginBottom={5}
-      >
+      <Heading as="h3" fontSize="2xl" marginTop={5} marginBottom={5}>
         {" "}
         Characters{" "}
       </Heading>
@@ -30,7 +24,7 @@ const AnimeCharacterList = ({ charactersAndActors }: Props) => {
           {mainCharacters.map((characterAndActor, index) => (
             <AnimeCharacters
               bg={
-                Math.floor(index / columns) % 2 === 0 ? "gray.1000" : "gray.900"
+                Math.floor(index / columns) % 2 === 0 ? "gray.900" : "gray.800"
               }
               key={characterAndActor.character.mal_id}
               characterAndActor={characterAndActor}

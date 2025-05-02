@@ -11,6 +11,12 @@ export interface Anime {
   genres: Genre[];
   score: number;
   type: string;
+  streaming: [
+    {
+      name: string;
+      url: string;
+    }
+  ];
   studios: Studio[];
   producers: Producer[];
   images: {

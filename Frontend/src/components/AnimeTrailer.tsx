@@ -29,8 +29,8 @@ const AnimeTrailer = ({ anime }: Props) => {
     <>
       <Box
         position="relative"
-        width="320px"
-        height="180px"
+        width="820px"
+        height="461px"
         borderRadius="lg"
         overflow="hidden"
         boxShadow="md"
