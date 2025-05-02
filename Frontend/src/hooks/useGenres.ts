@@ -2,15 +2,9 @@ import genres from "@/data/genres";
 import APIClient, { FetchResponse } from "@/services/apiClient";
 import ms from "ms";
 import { useQuery } from "@tanstack/react-query";
+import { Genre } from "@/entities/Genre";
 
 const apiClient = new APIClient<Genre[]>("/genres/anime");
-
-export interface Genre {
-  mal_id: number;
-  name: string;
-  url?: string;
-  count?: number;
-}
 
 const useGenres = () =>
   useQuery<FetchResponse<Genre[]>>({

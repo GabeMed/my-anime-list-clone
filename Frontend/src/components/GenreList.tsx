@@ -1,4 +1,4 @@
-import useGenres, { Genre } from "@/hooks/useGenres";
+import useGenres from "@/hooks/useGenres";
 import useAnimeQueryStore from "@/store";
 import { Button, List } from "@chakra-ui/react";
 

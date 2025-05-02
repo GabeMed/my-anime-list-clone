@@ -2,23 +2,9 @@ import APIClient, { FetchResponse } from "@/services/apiClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";
 import useAnimeQueryStore from "../store";
-import { Genre } from "./useGenres";
+import { Anime } from "@/entities/Anime";
 
 const apiClient = new APIClient<Anime[]>("/anime");
-
-export interface Anime {
-  mal_id: number;
-  title: string;
-  synopsis: string;
-  genres: Genre[];
-  score: number;
-  type: string;
-  images: {
-    webp: {
-      large_image_url: string;
-    };
-  };
-}
 
 const useAnimes = () => {
   const animeQuery = useAnimeQueryStore((s) => s.animeQuery);
