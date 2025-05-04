@@ -1,4 +1,4 @@
-export interface Producer {
+export default interface Producer {
   mal_id: number;
   name: string;
 }

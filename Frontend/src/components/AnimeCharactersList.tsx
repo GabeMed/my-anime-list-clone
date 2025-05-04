@@ -1,6 +1,6 @@
 import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
 import { useBreakpointValue } from "@chakra-ui/react";
-import { CharacterVoiceRole } from "@/entities/CharacterVoiceRole";
+import CharacterVoiceRole from "@/entities/CharacterVoiceRole";
 import AnimeCharacters from "./CharacterActorTable";
 
 interface Props {

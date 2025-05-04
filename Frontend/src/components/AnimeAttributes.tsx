@@ -1,4 +1,4 @@
-import { Anime } from "@/entities/Anime";
+import Anime from "@/entities/Anime";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import DefinitionItem from "./DefinitionItem";
 import MalScore from "./MalScore";

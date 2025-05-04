@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import APIClient, { FetchResponse } from "@/services/apiClient";
-import { Anime } from "@/entities/Anime";
+import Anime from "@/entities/Anime";
 
 const apiClient = new APIClient<FetchResponse<Anime>>("/anime");
 

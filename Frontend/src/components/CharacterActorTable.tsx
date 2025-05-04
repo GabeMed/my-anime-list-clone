@@ -1,4 +1,4 @@
-import { CharacterVoiceRole } from "@/entities/CharacterVoiceRole";
+import CharacterVoiceRole from "@/entities/CharacterVoiceRole";
 import { Box, Heading, HStack, Image, Text } from "@chakra-ui/react";
 
 interface Props {

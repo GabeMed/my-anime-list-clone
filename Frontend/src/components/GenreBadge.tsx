@@ -1,4 +1,4 @@
-import { Anime } from "@/entities/Anime";
+import Anime from "@/entities/Anime";
 import { Badge } from "@chakra-ui/react";
 
 interface Props {

@@ -1,9 +1,9 @@
-import { Genre } from "./Genre";
-import { Producer } from "./Producer";
-import { Studio } from "./Studio";
-import { Trailer } from "./Trailer";
+import Genre from "./Genre";
+import Producer from "./Producer";
+import Studio from "./Studio";
+import Trailer from "./Trailer";
 
-export interface Anime {
+export default interface Anime {
   mal_id: number;
   title: string;
   synopsis: string;

@@ -1,4 +1,4 @@
-import { Anime } from "@/entities/Anime";
+import Anime from "@/entities/Anime";
 import { Box, IconButton, Image } from "@chakra-ui/react";
 import { useState } from "react";
 import YouTube from "react-youtube";

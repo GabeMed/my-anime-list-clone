@@ -1,4 +1,4 @@
-export interface Person {
+export default interface Person {
   mal_id: number;
   name: string;
   images: {

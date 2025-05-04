@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import APIClient, { FetchResponse } from "@/services/apiClient";
-import { CharacterVoiceRole } from "@/entities/CharacterVoiceRole";
+import CharacterVoiceRole from "@/entities/CharacterVoiceRole";
 
 const apiClient = new APIClient<FetchResponse<CharacterVoiceRole[]>>("/anime");
 
