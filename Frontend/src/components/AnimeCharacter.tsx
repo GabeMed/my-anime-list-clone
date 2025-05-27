@@ -1,26 +1,20 @@
 import CharacterVoiceRole from "@/entities/CharacterVoiceRole";
 import { Box, Heading, HStack, Image, Text } from "@chakra-ui/react";
+import { useColorModeValue } from "./ui/color-mode";
 
 interface Props {
   characterAndActor: CharacterVoiceRole;
   bg?: string;
 }
 
-const AnimeCharacters = ({ characterAndActor, bg }: Props) => {
+const AnimeCharacter = ({ characterAndActor, bg }: Props) => {
   const character = characterAndActor.character;
   const voiceActor = characterAndActor.voice_actors[0];
 
   if (!voiceActor || !character) return null;
 
   return (
-    <HStack
-      align="center"
-      bg={bg}
-      borderTopWidth="1px"
-      borderBottomWidth="1px"
-      borderColor="gray.700"
-      padding="2"
-    >
+    <HStack align="center" bg={bg} borderTopWidth="1px" padding="2">
       <Image
         src={character.images.webp.image_url}
         boxSize="48px"
@@ -31,7 +25,7 @@ const AnimeCharacters = ({ characterAndActor, bg }: Props) => {
         <Heading as="h4" fontSize="sm">
           {character.name}
         </Heading>
-        <Text fontSize="xs" color="gray.500">
+        <Text fontSize="xs" color={useColorModeValue("gray.900", "gray.500")}>
           {characterAndActor.role}
         </Text>
       </Box>
@@ -40,7 +34,7 @@ const AnimeCharacters = ({ characterAndActor, bg }: Props) => {
         <Heading as="h4" fontSize="sm">
           {voiceActor.person.name}
         </Heading>
-        <Text fontSize="xs" color="gray.500">
+        <Text fontSize="xs" color={useColorModeValue("gray.900", "gray.500")}>
           {voiceActor.language}
         </Text>
       </Box>
@@ -54,4 +48,4 @@ const AnimeCharacters = ({ characterAndActor, bg }: Props) => {
   );
 };
 
-export default AnimeCharacters;
+export default AnimeCharacter;
