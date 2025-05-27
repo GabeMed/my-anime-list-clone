@@ -1,6 +1,11 @@
-# MyAnimes - (myanimelist clone) 🎌
+# AnimeVerse - (myanimelist clone) 🎌
 
-This project is a personal adaptation of the myAnimeList website, that is being developed with the intention of sharpening my Frontend Skills. It follows the best pratices of architecture and design principles recommended for react applications. 
+This project is a personal adaptation of the myAnimeList website, that is being developed with the intention of sharpening my Frontend Skills. It follows the best pratices of architecture and design principles recommended for react applications.
+
+---
+
+## 🔥 Check it Here: [AnimeVerse](https://animeverse-theta.vercel.app/)
+
 
 ---
 
@@ -24,7 +29,7 @@ This is a two-phase project that evolves over time. The app is a media browser t
 
 ---
 
-## ✅ Part 1 - Completed Features
+## ✅ Part 1 
 
 > 📍 [First phase code](https://github.com/GabeMed/my-anime-list-clone/tree/3d1c7cb23df876b9300d67e8ebc339e8a06739f2).
 
@@ -46,25 +51,20 @@ The first phase of the project includes all the core UI and filtering logic:
 
 ---
 
-## 🚀 Part 2 - Upcoming Features
+## 🚀 Part 2 
 
-> 🔨 This is being developed in this repo.
+The second part of the project includes the following features:
 
-The following features will be implemented:
-
-### Planned Features
+### Features
 - 📄 Detail pages with dynamic routes for anime
 - 🌟 Platform, rating, and release year filters
+- 🎥 Anime trailler display
 - 📷 Thumbnail and meta information display improvements
 - ⚙️ API integration with detailed info per item
 - 🧠 Better global state management with Zustand selectors
-- 💬 Review sections or user interactions
 
 ### Dev Enhancements
-- 🌐 Deployment-ready Vite config
-- 💡 Accessibility improvements
-- ✅ TypeScript strict mode & custom hooks
-- 🧪 Unit and integration tests (maybe)
+- 🌐 Deploy to vercel, and link git repository with the vercel project for hot updates.
 
 ---
 
@@ -73,7 +73,7 @@ The following features will be implemented:
 | Phase | Description | Status |
 |-------|-------------|--------|
 | Part 1 | Core layout, filtering, theming, and responsiveness | ✅ Complete |
-| Part 2 | Routing, filtering enhancements, detailed pages | 🚧 In Progress |
+| Part 2 | Routing, filtering enhancements, detailed pages |  ✅ Complete |
 
 ---
 
@@ -82,15 +82,34 @@ The following features will be implemented:
 ```bash
 src/
 ├── components/
-│   ├── ui/              # Chakra-based UI wrappers
-│   ├── layout/          # Grid and layout helpers
-│   └── features/        # Domain-specific components (GenreList, AnimeCard, etc.)
-├── hooks/               # Custom hooks
-├── data/                # Static/mock data (in early stages)
-├── theme/               # Chakra system + design tokens
-├── App.tsx              # Root layout
-├── main.tsx             # Vite/React bootstrap
+│   ├── ui/
+│   ├── component1.tsx
+│   (...)
+├── data/
+├── entities/
+├── hooks/
+├── pages/
+├── services/
+├── utils/
+├── main.tsx
+├── routes.tsx
+├── store.tsx
+├── theme.ts
 ```
+
+**Directory Explanations:**
+
+- **components/**: UI components and domain-specific components.
+- **data/**: Static/mock data.
+- **entities/**: Domain models and business objects.
+- **hooks/**: Custom hooks.
+- **pages/**: Complete views or routes of the application.
+- **services/**: API integrations and business logic services.
+- **utils/**: Helper functions and utility modules.
+- **main.tsx**: Vite/React bootstrap file.
+- **routes.tsx**: Route definitions for navigating between views.
+- **store.tsx**: Global state management using Zustand.
+- **theme.ts**: Chakra UI theming and design tokens.
 
 ---
 
