@@ -7,6 +7,10 @@ const GenreList = () => {
   const selectedGenreId = useAnimeQueryStore((s) => s.animeQuery.genreId);
   const setSelectedGenreId = useAnimeQueryStore((s) => s.setGenderId);
 
+  const handleGenreClick = (genreId: number) => {
+    setSelectedGenreId(selectedGenreId === genreId ? 0 : genreId);
+  };
+
   return (
     <List.Root>
       {data?.data.map((genre) => (
@@ -14,7 +18,7 @@ const GenreList = () => {
           <Button
             fontWeight={genre.mal_id === selectedGenreId ? "bold" : "normal"}
             variant={genre.mal_id === selectedGenreId ? "subtle" : "ghost"}
-            onClick={() => setSelectedGenreId(genre.mal_id)}
+            onClick={() => handleGenreClick(genre.mal_id)}
             fontSize="large"
             w="full"
           >

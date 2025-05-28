@@ -8,7 +8,7 @@ const NavBar = () => {
   return (
     <HStack bg="background" justifyContent="space-between" padding="10px">
       <HStack>
-        <Link to="/" onClick={() => window.location.reload()}>
+        <Link to="/">
           <Image src={logo} boxSize="60px" />
         </Link>
       </HStack>
