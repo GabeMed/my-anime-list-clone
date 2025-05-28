@@ -13,11 +13,20 @@ const HomePage = () => {
           base: `"main"`,
           md: `"aside main"`,
         }}
+        templateColumns={{
+          base: "1fr",
+          md: "auto 1fr",
+        }}
+        gap={2}
       >
-        <GridItem area="aside">
+        <GridItem
+          area="aside"
+          overflow="hidden"
+          display={{ base: "none", md: "block" }}
+        >
           <GenreList />
         </GridItem>
-        <GridItem area="main">
+        <GridItem area="main" overflow="hidden">
           <Box paddingLeft={2}>
             <AnimeHeading />
             <HStack spaceX={5} marginBottom={5}>

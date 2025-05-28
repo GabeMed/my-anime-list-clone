@@ -30,7 +30,7 @@ const AnimeDatailPage = () => {
   if (characterFetchingError || !characters) throw characterFetchingError;
 
   return (
-    <Box bg="background" minH="100vh" color="text">
+    <Box bg="background" minH="100vh" color="text" overflowX="hidden">
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
         maxW="container.xl"

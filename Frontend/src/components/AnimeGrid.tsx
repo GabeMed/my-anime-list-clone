@@ -36,8 +36,8 @@ const AnimeGrid = () => {
       loader
     >
       <SimpleGrid
-        columns={{ base: 1, lg: 2, xl: 3 }} //Todo: Adjust responsive logic to cellphones
-        padding="10px" //! Update, death to cellphones !
+        columns={{ base: 1, lg: 2, xl: 3 }}
+        padding="10px"
         columnGap={4}
         rowGap={10}
       >

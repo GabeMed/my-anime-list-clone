@@ -25,23 +25,32 @@ const AnimeCard = ({ anime }: Props) => {
 
   return (
     <Link to={"/anime/" + anime.mal_id}>
-      <Card.Root flexDirection="row" boxSize="65" border="hidden">
+      <Card.Root
+        flexDirection={{ base: "column", sm: "row" }}
+        width={{ base: "100%", sm: "auto" }}
+        height={{ base: "auto", sm: "65" }}
+        border="hidden"
+      >
         <Image
           src={anime.images.webp.large_image_url}
-          maxH="md"
-          maxW="sm"
+          maxH={{ base: "200px", sm: "md" }}
+          maxW={{ base: "100%", sm: "sm" }}
+          objectFit="cover"
           aspectRatio={6 / 9}
         />
         <Card.Body p="4">
-          <Heading size="md">{anime.title}</Heading>
-          <HStack paddingTop="2" w="100%">
+          <Heading size={{ base: "sm", sm: "md" }}>{anime.title}</Heading>
+          <HStack paddingTop="2" w="100%" gap={{ base: 1, sm: 2 }}>
             <MalScore score={anime.score} />
-            <Badge size="lg" colorPalette={animeTypeData[type].color}>
+            <Badge
+              size={{ base: "md", sm: "lg" }}
+              colorPalette={animeTypeData[type].color}
+            >
               <Icon as={IconComponent} />
-              <Text>{type}</Text>
+              <Text fontSize={{ base: "xs", sm: "sm" }}>{type}</Text>
             </Badge>
           </HStack>
-          <HStack mt="4" wrap="wrap">
+          <HStack mt="4" wrap="wrap" gap={{ base: 1, sm: 2 }}>
             <GenreBadge anime={anime} />
           </HStack>
         </Card.Body>

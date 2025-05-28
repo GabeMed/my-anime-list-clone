@@ -29,12 +29,14 @@ const AnimeTrailer = ({ anime }: Props) => {
     return (
       <>
         <Box
-          position="relative"
-          width="820px"
-          height="461px"
-          borderRadius="lg"
+          w={{ base: "100%", md: "820px" }}
+          h={{ base: "auto", md: "461px" }}
+          maxW="100%"
           overflow="hidden"
-          boxShadow="md"
+          position="relative"
+          borderRadius="lg"
+          boxShadow="lg"
+          aspectRatio={16 / 9}
         >
           <Stack height="80%" justify="center" align="center">
             <Heading>Sorry, there is no video available.</Heading>
@@ -112,12 +114,14 @@ const AnimeTrailer = ({ anime }: Props) => {
   return (
     <>
       <Box
-        position="relative"
-        width="820px"
-        height="461px"
-        borderRadius="lg"
+        w={{ base: "100%", md: "820px" }}
+        h={{ base: "auto", md: "461px" }}
+        maxW="100%"
         overflow="hidden"
-        boxShadow="md"
+        position="relative"
+        borderRadius="lg"
+        boxShadow="lg"
+        aspectRatio={16 / 9}
       >
         <Image src={thumbnail} objectFit="cover" width="100%" height="100%" />
         <IconButton
