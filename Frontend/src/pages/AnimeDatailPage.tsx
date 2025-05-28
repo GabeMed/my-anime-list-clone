@@ -23,7 +23,18 @@ const AnimeDatailPage = () => {
   } = useCharacters(id!);
   const characters = charactersResponse?.data;
 
-  if (animeLoading || characterLoading) return <Spinner />;
+  if (animeLoading || characterLoading)
+    return (
+      <Box
+        bg="background"
+        minH="100vh"
+        display="flex"
+        alignItems="center"
+        justifyContent="center"
+      >
+        <Spinner size="xl" />
+      </Box>
+    );
 
   if (animeFetchError || !anime) throw animeFetchError;
 
