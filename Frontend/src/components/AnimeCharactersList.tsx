@@ -9,19 +9,19 @@ interface Props {
 }
 
 const AnimeCharacterList = ({ charactersAndActors }: Props) => {
+  // Hooks run unconditionally and once per render (calling useColorModeValue
+  // inside getBackground ran it once per character).
+  const columns = useBreakpointValue({ base: 1, md: 2 }) ?? 1;
+  const evenRowBg = useColorModeValue("gray.100", "gray.800");
+  const oddRowBg = useColorModeValue("gray.200", "gray.700");
+
   if (!charactersAndActors || charactersAndActors.length === 0) return null;
 
-  const columns = useBreakpointValue({ base: 1, md: 2 }) ?? 1;
   const mainCharacters = charactersAndActors.slice(0, 8);
 
-  const getBackground = (index: number, columns: number) => {
-    const cardbg = useColorModeValue(
-      Math.floor(index / columns) % 2 === 0 ? "gray.100" : "gray.200",
-      Math.floor(index / columns) % 2 === 0 ? "gray.800" : "gray.700"
-    );
-
-    return cardbg;
-  };
+  // Stripes by row, so both cells of a row share the same background.
+  const getBackground = (index: number, columns: number) =>
+    Math.floor(index / columns) % 2 === 0 ? evenRowBg : oddRowBg;
 
   return (
     <Box maxW="850px" marginY={5} bg="background">

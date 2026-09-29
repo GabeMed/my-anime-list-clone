@@ -18,13 +18,12 @@ const AnimeGrid = () => {
     isFetchingNextPage,
     fetchNextPage,
   } = useAnimes();
+  const animeQuery = useAnimeQueryStore((s) => s.animeQuery);
 
   if (error) return <Text>{error.message}</Text>;
 
   const fetchedAnimesCount =
     data?.pages.reduce((acc, page) => acc + page.data.length, 0) || 0;
-
-  const animeQuery = useAnimeQueryStore((s) => s.animeQuery);
 
   return (
     <InfiniteScroll

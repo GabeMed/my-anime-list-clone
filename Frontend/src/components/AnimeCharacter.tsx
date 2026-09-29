@@ -8,6 +8,8 @@ interface Props {
 }
 
 const AnimeCharacter = ({ characterAndActor, bg }: Props) => {
+  // Hooks must run on every render, so this comes before the early return.
+  const subtleTextColor = useColorModeValue("gray.900", "gray.500");
   const character = characterAndActor.character;
   const voiceActor = characterAndActor.voice_actors[0];
 
@@ -25,7 +27,7 @@ const AnimeCharacter = ({ characterAndActor, bg }: Props) => {
         <Heading as="h4" fontSize="sm">
           {character.name}
         </Heading>
-        <Text fontSize="xs" color={useColorModeValue("gray.900", "gray.500")}>
+        <Text fontSize="xs" color={subtleTextColor}>
           {characterAndActor.role}
         </Text>
       </Box>
@@ -34,7 +36,7 @@ const AnimeCharacter = ({ characterAndActor, bg }: Props) => {
         <Heading as="h4" fontSize="sm">
           {voiceActor.person.name}
         </Heading>
-        <Text fontSize="xs" color={useColorModeValue("gray.900", "gray.500")}>
+        <Text fontSize="xs" color={subtleTextColor}>
           {voiceActor.language}
         </Text>
       </Box>
