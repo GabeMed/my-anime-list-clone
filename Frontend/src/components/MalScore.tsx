@@ -5,7 +5,7 @@ interface Props {
 }
 
 const MalScore = ({ score }: Props) => {
-  let color = score >= 7.5 ? "green" : score >= 5 ? "yellow" : "red";
+  const color = score >= 7.5 ? "green" : score >= 5 ? "yellow" : "red";
 
   return (
     <Badge

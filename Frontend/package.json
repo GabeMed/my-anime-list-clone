@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "typecheck": "tsc",
+    "test": "vitest run"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.13.0",
@@ -26,12 +29,24 @@
     "zustand": "^5.0.3"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
     "@types/ms": "^2.1.0",
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^4.4.1",
+    "eslint": "^10.11.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.7",
+    "globals": "^16.5.0",
+    "jsdom": "^26.1.0",
     "typescript": "^4.9.3",
+    "typescript-eslint": "^8.71.0",
     "vite": "^6.3.3",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.7"
   }
 }
