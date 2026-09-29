@@ -1,10 +1,21 @@
 import APIClient, { FetchResponse } from "@/services/apiClient";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";
-import useAnimeQueryStore from "../store";
+import useAnimeQueryStore, { AnimeQuery } from "../store";
 import Anime from "@/entities/Anime";
 
 const apiClient = new APIClient<Anime[]>("/anime");
+
+/** Query-string parameters for Jikan's GET /anime. */
+export const buildAnimeParams = (animeQuery: AnimeQuery, page: number) => ({
+  // Deselecting a genre stores 0, which is not a genre id: send nothing.
+  genres: animeQuery.genreId || undefined,
+  ...(animeQuery.type != "All" && { type: animeQuery.type }),
+  order_by: animeQuery.orderBy,
+  sort: animeQuery.orderDirection,
+  q: animeQuery.searchText,
+  page,
+});
 
 const useAnimes = () => {
   const animeQuery = useAnimeQueryStore((s) => s.animeQuery);
@@ -12,16 +23,7 @@ const useAnimes = () => {
   return useInfiniteQuery<FetchResponse<Anime[]>, Error>({
     queryKey: ["anime", animeQuery],
     queryFn: ({ pageParam = 1 }) =>
-      apiClient.getAll({
-        params: {
-          genres: animeQuery.genreId,
-          ...(animeQuery.type != "All" && { type: animeQuery.type }),
-          order_by: animeQuery.orderBy,
-          sort: animeQuery.orderDirection,
-          q: animeQuery.searchText,
-          page: pageParam,
-        },
-      }),
+      apiClient.getAll({ params: buildAnimeParams(animeQuery, pageParam) }),
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.pagination.has_next_page
         ? allPages.length + 1

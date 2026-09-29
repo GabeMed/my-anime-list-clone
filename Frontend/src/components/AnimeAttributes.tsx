@@ -16,7 +16,7 @@ const AnimeAttributes = ({ anime }: Props) => {
       </DefinitionItem>
       <DefinitionItem term="Studios">
         {anime.studios.map((studio) => (
-          <Text>{studio.name}</Text>
+          <Text key={studio.mal_id}>{studio.name}</Text>
         ))}
       </DefinitionItem>
       <DefinitionItem term="Genres">

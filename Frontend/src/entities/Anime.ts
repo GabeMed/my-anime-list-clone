@@ -6,7 +6,7 @@ import Trailer from "./Trailer";
 export default interface Anime {
   mal_id: number;
   title: string;
-  synopsis: string;
+  synopsis: string | null;
   trailer: Trailer;
   genres: Genre[];
   score: number;

@@ -6,6 +6,7 @@ import useAnimeDetail from "@/hooks/useAnimeDetail";
 import useCharacters from "@/hooks/useCharacters";
 import { Box, GridItem, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
+import { cleanSynopsis } from "@/utils/synopsis";
 
 const AnimeDatailPage = () => {
   const { id } = useParams();
@@ -51,9 +52,7 @@ const AnimeDatailPage = () => {
       >
         <GridItem>
           <Heading size="7xl">{anime.title}</Heading>
-          <ExpandableText>
-            {anime.synopsis.slice(0, anime.synopsis.length - 25)}
-          </ExpandableText>
+          <ExpandableText>{cleanSynopsis(anime.synopsis)}</ExpandableText>
           <AnimeAttributes anime={anime} />
         </GridItem>
         <GridItem>
