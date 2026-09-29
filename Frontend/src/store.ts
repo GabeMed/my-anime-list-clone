@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { AnimeType } from "./utils/animeType";
 
-interface AnimeQuery {
+export interface AnimeQuery {
   searchText?: string;
   genreId?: number;
   type?: AnimeType | "All";

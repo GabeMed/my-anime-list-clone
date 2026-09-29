@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import Layout from "./pages/Layout";
-import AnimeDatailPage from "./pages/AnimeDatailPage";
+import AnimeDetailPage from "./pages/AnimeDetailPage";
 import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
@@ -11,7 +11,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { index: true, element: <HomePage /> },
-      { path: "anime/:id", element: <AnimeDatailPage /> },
+      { path: "anime/:id", element: <AnimeDetailPage /> },
     ],
   },
 ]);

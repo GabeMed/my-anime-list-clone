@@ -1,132 +1,102 @@
-# AnimeVerse - (myanimelist clone) 🎌
+# AnimeVerse
 
-This project is a personal adaptation of the myAnimeList website, that is being developed with the intention of sharpening my Frontend Skills. It follows the best pratices of architecture and design principles recommended for react applications.
+[![CI](https://github.com/GabeMed/my-anime-list-clone/actions/workflows/ci.yml/badge.svg)](https://github.com/GabeMed/my-anime-list-clone/actions/workflows/ci.yml)
 
----
+A MyAnimeList-style anime browser built with React 18 and TypeScript. It reads
+data from the public [Jikan API](https://jikan.moe) (an unofficial
+MyAnimeList API). I built it to sharpen my frontend skills.
 
-## 🔥 Check it Here: [AnimeVerse](https://animeverse-theta.vercel.app/)
+**Live:** https://animeverse-theta.vercel.app
 
+## Features
 
----
+- Infinite-scrolling grid of anime cards with MAL score, media type and genres; loading skeletons.
+- Filters: genre (sidebar), media type (TV, Movie, OVA, ...), sort order (name, release date, popularity, score) and text search. The filters combine and live in a small Zustand store.
+- Detail page with an expandable synopsis, producers, studios, genres, streaming services, the YouTube trailer (with an easter egg when there is none) and the main characters with their voice actors.
+- Light and dark themes built from Chakra UI v3 semantic tokens, with a custom gray palette and breakpoints; responsive from phone to wide screens.
 
-## 📦 Tech Stack
+## Architecture
 
-- **React 18**
-- **TypeScript**
-- **Chakra UI** (with token-based theming and color mode switching)
-- **Vite** (bundler)
-- **Zustand** (state management)
-- **React Query** (data fetching)
-- **React Router DOM v6** (routing)
-- **Custom Theming System** with Chakra + `createSystem`
-- **Responsive Design** using Chakra Grid + breakpoints
+```mermaid
+flowchart LR
+    subgraph UI["React components"]
+        Pages["pages/<br/>HomePage · AnimeDetailPage"]
+        Components["components/<br/>AnimeGrid · AnimeCard · GenreList · SortSelector ..."]
+    end
+    Store["store.ts<br/>Zustand: search, genre, type, order"]
+    Hooks["hooks/<br/>useAnimes (infinite) · useAnimeDetail<br/>useCharacters · useGenres"]
+    Client["services/apiClient.ts<br/>generic APIClient over axios"]
+    Jikan["Jikan API v4"]
 
----
-
-## 🚧 Project Overview
-
-This is a two-phase project that evolves over time. The app is a media browser that fetches and filters anime titles, very similar to the [myAnimeList](https://myanimelist.net/) website.
-
----
-
-## ✅ Part 1 
-
-> 📍 [First phase code](https://github.com/GabeMed/my-anime-list-clone/tree/3d1c7cb23df876b9300d67e8ebc339e8a06739f2).
-
-The first phase of the project includes all the core UI and filtering logic:
-
-### Features
-- 🎨 Light/Dark mode with customized color palettes
-- 🧭 Side panel for genre selection
-- 🔍 Search input with live filtering
-- 📱 Fully responsive grid layout
-- 🔃 Loading skeletons
-- 🔘 Custom color mode switch using `next-themes` and Chakra UI
-- 🎛️ Clean component structure
-
-### Theme Customization
-- Semantic tokens configured for background and text based on color mode
-- Custom `gray` palette used across the application
-- Accessible contrast in both themes
-
----
-
-## 🚀 Part 2 
-
-The second part of the project includes the following features:
-
-### Features
-- 📄 Detail pages with dynamic routes for anime
-- 🌟 Platform, rating, and release year filters
-- 🎥 Anime trailler display
-- 📷 Thumbnail and meta information display improvements
-- ⚙️ API integration with detailed info per item
-- 🧠 Better global state management with Zustand selectors
-
-### Dev Enhancements
-- 🌐 Deploy to vercel, and link git repository with the vercel project for hot updates.
-
----
-
-## 🔗 Project Milestones
-
-| Phase | Description | Status |
-|-------|-------------|--------|
-| Part 1 | Core layout, filtering, theming, and responsiveness | ✅ Complete |
-| Part 2 | Routing, filtering enhancements, detailed pages |  ✅ Complete |
-
----
-
-## 📂 Structure
-
-```bash
-src/
-├── components/
-│   ├── ui/
-│   ├── component1.tsx
-│   (...)
-├── data/
-├── entities/
-├── hooks/
-├── pages/
-├── services/
-├── utils/
-├── main.tsx
-├── routes.tsx
-├── store.tsx
-├── theme.ts
+    Pages --> Components
+    Components -- "read / update filters" --> Store
+    Components --> Hooks
+    Hooks -- "query key includes the filters" --> Store
+    Hooks -- "TanStack Query cache (24h stale time)" --> Client --> Jikan
 ```
 
-**Directory Explanations:**
+- **Server state** is handled by TanStack Query. `useAnimes` is an infinite query whose key contains the current filters, so changing a filter starts a new paginated list. Genres ship as static data (`data/genres.ts`) and are used as `initialData`, so the sidebar renders without a request.
+- **Client state** (the filters) lives in a Zustand store. Components subscribe with selectors so they re-render only for the field they use.
+- **API access** goes through one generic `APIClient<T>` (`getAll`, `get`) that is typed with the entity interfaces in `entities/`.
 
-- **components/**: UI components and domain-specific components.
-- **data/**: Static/mock data.
-- **entities/**: Domain models and business objects.
-- **hooks/**: Custom hooks.
-- **pages/**: Complete views or routes of the application.
-- **services/**: API integrations and business logic services.
-- **utils/**: Helper functions and utility modules.
-- **main.tsx**: Vite/React bootstrap file.
-- **routes.tsx**: Route definitions for navigating between views.
-- **store.tsx**: Global state management using Zustand.
-- **theme.ts**: Chakra UI theming and design tokens.
+```text
+Frontend/src/
+├── components/   UI and domain components (ui/ holds the Chakra UI snippets)
+├── data/         static genre list
+├── entities/     TypeScript models of the Jikan responses
+├── hooks/        TanStack Query hooks
+├── pages/        routes: home, detail, error
+├── services/     axios client
+├── utils/        media-type icons/colors, synopsis cleanup
+├── routes.tsx    React Router 7 routes
+├── store.ts      Zustand store
+└── theme.ts      Chakra UI tokens and semantic colors
+```
 
----
+## Run locally
 
-## 📍 Reference Commit for Part 1
+Requires Node 22 (or 20.19+). The Jikan API needs no key.
 
-You can view the completed first phase here:
-**👉 [PART 1](https://github.com/GabeMed/my-anime-list-clone/tree/3d1c7cb23df876b9300d67e8ebc339e8a06739f2)**
+```bash
+cd Frontend
+npm ci
+npm run dev        # http://localhost:5173
+```
 
----
+## Tests and checks
 
-## ✨ Inspiration
+```bash
+cd Frontend
+npm run typecheck  # tsc
+npm run lint       # ESLint + typescript-eslint + rules of hooks
+npm test           # Vitest + Testing Library (jsdom)
+npm run build      # tsc && vite build
+```
 
-This project is inspired in [CodeWithMosh](https://github.com/mosh-hamedani/game-hub) project that makes a clone of the [Rawg](https://rawg.io/) website, and aims to explore UI/UX polish and anime-themed adaptations for a similar media browsing app.
+The 18 tests don't touch the network. They cover:
 
----
+- **Components:** the anime card (content, link and unknown-type fallback), the grid (cards, and showing an API error without crashing), the genre list (select and clear), the expandable synopsis and the score badge.
+- **Logic:** the filter store, the mapping from filters to Jikan query parameters, and the synopsis cleanup.
 
-## 📫 Contact
+[CI](.github/workflows/ci.yml) runs all four commands on every push and pull
+request. The site deploys to Vercel from `main`; `Frontend/vercel.json`
+rewrites client-side routes such as `/anime/1` to `index.html`.
 
-If you're working on a similar project, feel free to reach out and connect!
+## Tech stack
 
+React 18, TypeScript, Vite, Chakra UI v3 (with `next-themes`), TanStack Query
+v4, Zustand, React Router 7, axios, react-infinite-scroll-component,
+react-youtube, framer-motion. Tooling: ESLint, Vitest, Testing Library.
+
+## History
+
+The project was built in two phases:
+
+1. [Part 1](https://github.com/GabeMed/my-anime-list-clone/tree/3d1c7cb23df876b9300d67e8ebc339e8a06739f2): layout, genre/type/search filtering, theming and responsiveness.
+2. Part 2: detail pages with routing, sort order, trailers and characters, Zustand selectors, and deployment to Vercel.
+
+## Credits
+
+Inspired by [CodeWithMosh's Game Hub](https://github.com/mosh-hamedani/game-hub),
+a clone of [RAWG](https://rawg.io/), adapted here to anime with its own UI and
+detail pages. Data from [Jikan](https://jikan.moe) / MyAnimeList.
