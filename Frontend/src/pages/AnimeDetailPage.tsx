@@ -8,7 +8,7 @@ import { Box, GridItem, Heading, SimpleGrid, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import { cleanSynopsis } from "@/utils/synopsis";
 
-const AnimeDatailPage = () => {
+const AnimeDetailPage = () => {
   const { id } = useParams();
   const {
     data: animeResponse,
@@ -64,4 +64,4 @@ const AnimeDatailPage = () => {
   );
 };
 
-export default AnimeDatailPage;
+export default AnimeDetailPage;
